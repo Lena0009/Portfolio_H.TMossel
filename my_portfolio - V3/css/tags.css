@@ -1,0 +1,29 @@
+/* Central Design System for Competencies */
+:root {
+    --color-tr: #F5DD53;  
+    --color-mdc: #E7A5FB; 
+    --color-us: #5CD665;  
+    --color-ca: #ff9041;
+    --color-be: #76B6FF;
+}
+
+.tag {
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 12px; 
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+/* Match the data attribute to the color */
+.tag[data-competence="TR"] { background-color: var(--color-tr); }
+.tag[data-competence="MDC"] { background-color: var(--color-mdc); }
+.tag[data-competence="US"] { background-color: var(--color-us); }
+.tag[data-competence="CA"] { background-color: var(--color-ca); }
+.tag[data-competence="BE"] { background-color: var(--color-be); }
+
+.tag:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
