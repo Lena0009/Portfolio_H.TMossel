@@ -1,0 +1,297 @@
+/*This is the style list for your Home ("Hero") card, regular cards, and the Goal satellite headers.*/
+
+/* Master Card Styles */
+.mindmap-card {
+    
+    position: absolute;
+    background: white;
+    padding: 60px;
+    border-radius: 60px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    display: flex !important;
+    gap: 60px;
+    z-index: 1;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: auto;
+}
+
+/* Hero/Home specifically */
+.hero-card {
+    width: 900px;
+    height: fit-content;
+    align-items: center;
+    border-radius: 60px;
+}
+
+.card-image-circle {
+    width: 300px; height: 400px;
+    border-radius: 300px; 
+    overflow: hidden;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-image-circle img { width: 100%; height: 100%; object-fit: cover; }
+
+.hero-title {
+    display: block;
+    font-weight: 700;
+    font-size: var(--card-title-size);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: #000;
+}
+
+/* Specialized Satellite Styles */
+
+/*This section is for the "Goals M2.2 Section"*/
+.card-goal-header {
+    font-weight: 700;
+    font-size: var(--hero-font-size);
+    position: relative;
+    background: white;
+    padding: 30px 60px;
+    border-radius: 100px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border: 1px solid #eee;
+    z-index: 20;
+    width: fit-content;
+    display: flex;
+    align-items: flex-start;
+    justify-content: left;
+}
+
+#Goals-card {
+    padding: 30px 100px;
+    min-width: auto;
+    border-radius: 60px;
+}
+
+/* Sub-Cards */
+.card-group {
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 60px;
+}
+
+.sub-card-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; 
+    
+    width: 100%;
+    pointer-events: auto;
+}
+
+.sub-card {
+    background: white;
+    border-radius: 40px;
+    padding: 40px 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    width: 700px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 100;
+}
+
+.sub-card:hover { transform: translateX(10px); /* Moves right on hover instead of up */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);}
+
+
+.sub-header {
+    font-size: 24px;       /* Clear distinction from body text */
+    margin-top: 10px; 
+    margin-bottom: 15px;     /* Space between tags and title */
+    color: #1a1a1a;
+    line-height: 1.2;
+}
+
+.sub-body p {
+    font-size: 18px;       /* Readable body size */
+    line-height: 1.6;      /* Generous line height for better legibility */
+    color: #4a4a4a;
+    margin-top: 15px;
+}
+
+
+
+/*VISON CARD STYLE*/
+.vision-card {   
+    width: 1300px;
+    height: fit-content; 
+    padding: 60px;           
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    background: #ffffff;
+    border-radius: 60px;   
+}
+
+/* Header styling using your variables */
+.vision-card h2 {
+    font-size: var(--vision-header-size);
+    margin-bottom: var(--vision-title-spacing);
+    font-weight: 700;
+}
+
+/* Body styling with an internal scrollbar */
+.vision-card .card-body {
+    overflow-y: auto;      /* Allows scrolling inside the card */
+    padding-right: 20px;   /* Space for the scrollbar */
+}
+
+.vision-card p {
+    font-size: var(--vision-body-size);
+    line-height: var(--vision-line-height);
+    color: #333;
+    margin: 24px;
+}
+
+/*AMBITION CARD STYLE*/
+
+.ambition-card {
+    width: 1000px;
+    height: fit-content;        
+    padding: 60px;           
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    background: #ffffff;
+    border-radius: 60px;   
+}
+
+/* Header styling using your variables */
+.ambition-card h2 {
+    font-size: var(--vision-header-size);
+    margin-bottom: var(--vision-title-spacing);
+    font-weight: 700;
+}
+
+/* Body styling with an internal scrollbar */
+.ambition-card .card-body {
+    overflow-y: auto;      /* Allows scrolling inside the card */
+    padding-right: 20px;   /* Space for the scrollbar */
+}
+
+.ambition-card p {
+    font-size: var(--vision-body-size);
+    line-height: var(--vision-line-height);
+    color: #333;
+    margin: 24px;
+}
+
+/*PI and Weakness CARD STYLE*/
+
+.PI-card {
+    min-width: 900px;
+    height: fit-content;      
+    padding: 60px;           
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    background: #ffffff;
+    border-radius: 60px;  
+    align-items: stretch; 
+    gap: 100px;
+}
+
+/* Header styling using your variables */
+.PI-card h2 {
+    font-size: var(--vision-header-size);
+    margin-bottom: var(--vision-title-spacing);
+    font-weight: 700;
+}
+
+/* Body styling with an internal scrollbar */
+.PI-card .card-body {
+    overflow-y: auto;      /* Allows scrolling inside the card */
+    padding-right: 20px;   /* Space for the scrollbar */
+}
+
+.PI-card p {
+    font-size: var(--vision-body-size);
+    line-height: var(--vision-line-height);
+    color: #333;
+    margin: 24px;
+}
+
+
+/*PI strength and process CARD STYLE*/
+
+.PIS-card {
+    min-width: 900px;
+    height: fit-content;      
+    padding: 60px;           
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    background: #ffffff;
+    border-radius: 60px;  
+    align-items: stretch; 
+    gap: 100px;
+}
+
+/* Header styling using your variables */
+.PIS-card h2 {
+    font-size: var(--vision-header-size);
+    margin-bottom: var(--vision-title-spacing);
+    font-weight: 700;
+}
+
+/* Body styling with an internal scrollbar */
+.PIS-card .card-body {
+    overflow-y: auto;      /* Allows scrolling inside the card */
+    padding-right: 20px;   /* Space for the scrollbar */
+}
+
+.PIS-card p {
+    font-size: var(--vision-body-size);
+    line-height: var(--vision-line-height);
+    color: #333;
+    margin: 24px;
+}
+
+
+/* Container for the vertical stack */
+.reflection-stack {
+    display: flex;
+    flex-direction: row; /* Changed from column to row */
+    gap: 60px;          /* Increased gap for horizontal breathing room */
+    margin-top: 50px; 
+    align-items: flex-start; /* Aligns cards to the top of the row */
+    justify-content: center;
+}
+
+/* Individual Static Card Style */
+.static-reflection-card {
+    background: white;
+    min-width: 700px;       /* Slightly reduced width to fit three in a row */
+    min-height: 350px;  /* Ensures uniform height even with different text lengths */
+    padding: 40px;
+    border-radius: 30px; 
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    text-align: left;
+}
+
+.static-reflection-card h4 {
+    margin-bottom: 15px;
+    font-size: var(--vision-header-size);
+    font-weight: 700;
+}
+
+.static-reflection-card p {
+    font-size: var(--vision-body-size);
+    line-height: 1.6;
+    color: #444;
+}
