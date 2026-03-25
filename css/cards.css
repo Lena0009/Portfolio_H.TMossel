@@ -160,7 +160,7 @@
 /*AMBITION CARD STYLE*/
 
 .ambition-card {
-    width: 1000px;
+    width: 1300px;
     height: fit-content;        
     padding: 60px;           
     display: flex;
@@ -294,4 +294,47 @@
     font-size: var(--vision-body-size);
     line-height: 1.6;
     color: #444;
+}
+
+
+/* The Card Container */
+.past-card {
+    width: 400px;        /* Keep your desired width */
+    max-height: 600px;   /* Limits the height so it doesn't overlap others */
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+/* Paragraph Spacing (The "Breathing Room" fix) */
+.past-card p {
+    margin-bottom: 24px; /* Creates space between paragraphs */
+    line-height: 1.6;    /* Improves readability */
+    font-size: 16px;
+    color: #333;
+}
+
+/* The Scrollable Area */
+.scroll-area {
+    overflow-y: auto;    /* Enables vertical scrolling */
+    padding-right: 15px; /* Space so text doesn't touch the scrollbar */
+    flex-grow: 1;        /* Fills the remaining space in the card */
+}
+
+/* Custom Scrollbar (To keep it looking professional) */
+.scroll-area::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scroll-area::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scroll-area::-webkit-scrollbar-thumb {
+    background: #d1d1d1;
+    border-radius: 10px;
+}
+
+.scroll-area::-webkit-scrollbar-thumb:hover {
+    background: #b1b1b1;
 }
