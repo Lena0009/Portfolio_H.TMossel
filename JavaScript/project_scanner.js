@@ -1,5 +1,7 @@
 // JavaScript/project_scanner.js
 
+import { moveCameraTo } from './camera.js';
+
 export async function initProjectScanner() {
     const track = document.getElementById('project-track');
     const slider = document.querySelector('.archive-slider');
@@ -267,37 +269,73 @@ export async function initProjectScanner() {
     updateDots();
 }
 
+// Inside project_scanner.js
+
 window.openProjectSidebar = async function(url) {
     const sidebar = document.getElementById('project-sidebar');
     const content = document.getElementById('sidebar-content');
 
+    console.log("Card clicked! Original URL:", url);
+    
+    if (!sidebar || !content) return;
+
+    // 1. CRITICAL: Clean the URL to get just the filename
+    // This turns "./projects/LIVID.html" into "LIVID.html"
+    const fileName = url.split('/').pop();
+
     try {
         const response = await fetch(url);
         const html = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
+        const doc = new DOMParser().parseFromString(html, 'text/html');
         const container = doc.querySelector('.project-page-container');
         
         if (container) {
-            // Smoothly swap content
             content.style.opacity = 0;
             setTimeout(() => {
                 content.innerHTML = container.innerHTML;
                 content.style.opacity = 1;
-                content.scrollTop = 0; // Always start at the top of a new project
+                content.scrollTop = 0;
             }, 200);
-
+            
             sidebar.classList.add('open');
+
+            // 2. HIGHLIGHT LOGIC (Runs every time the sidebar opens/changes)
+            
+            // Clear all current highlights
+            document.querySelectorAll('.project-citation').forEach(cite => {
+                cite.classList.remove('highlight-active');
+            });
+
+            // Find citations matching the filename
+            const relevantCitations = document.querySelectorAll(`.project-citation[data-project="${fileName}"]`);
+            
+            if (relevantCitations.length > 0) {
+                relevantCitations.forEach(cite => {
+                    cite.classList.add('highlight-active');
+                });
+
+                // 3. CAMERA JUMP (Optional but recommended)
+                // This pans the mindmap to where the text is mentioned
+                const parentCard = relevantCitations[0].closest('.mindmap-card');
+                if (parentCard && parentCard.id && typeof moveCameraTo === 'function') {
+                    moveCameraTo(parentCard.id, 1); 
+                }
+            }
         }
-    } catch (err) {
-        console.error("Failed to load project:", err);
-    }
+    } catch (err) { console.error("Sidebar Load Error:", err); }
 };
 
 window.closeSidebar = function() {
     const sidebar = document.getElementById('project-sidebar');
     if (sidebar) {
         sidebar.classList.remove('open');
+
+        // Remove text highlights
+        document.querySelectorAll('.project-citation').forEach(cite => {
+            cite.classList.remove('highlight-active');
+        });
+
+        //Remove Project card highlights
         document.querySelectorAll('.project-preview-card').forEach(c => c.classList.remove('is-active'));
         console.log("Sidebar closed.");
     }

@@ -7,20 +7,37 @@
     position: relative;
     cursor: grab;
     pointer-events: none;
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 #canvas {
     position: absolute;
-    width: 30000px;
+    left: 0;
+    top: 0;
+    
+    width: 20000px;
     height: 20000px;
     background-color: #fcfbfb;
     background-image: radial-gradient(#aaaaaa 1.5px, transparent 1.5px);
     background-size: 30px 30px;
     transform-origin: 0 0;
-    will-change: left, top, transform;
+    will-change: transform;
     backface-visibility: hidden;
     transform-style: preserve-3d;
     pointer-events: auto;
+    image-rendering: -webkit-optimize-contrast;
+
+    will-change: transform;
+    transform: translateZ(0); /* Forces GPU acceleration */
+    backface-visibility: hidden;
+
+    background-attachment: local;
+
+/*No user selection*/
+    user-select: none;
+    -webkit-user-select: none; /* For Safari */
+    -moz-user-select: none;
 }
 
 /* UI Layer Layout */
@@ -131,24 +148,6 @@
     min-width: 0; /* Necessary for flexbox calculation */
 }
 
-/* Force the diagram to be large */
-.process-diagram-wrapper img {
-    width: 100% !important;
-    height: auto;
-    display: block;
-    object-fit: contain;
-    max-width: none !important;
-}
-
-/* Specific Card Styling */
-#PIStrength-card {
-    width: 2200px !important;
-    max-width: 2200px;
-    padding: 130px !important; /* Your custom preference */
-    box-sizing: border-box; /* Keeps padding inside the 2200px width */
-    display: flex;
-    flex-direction: column;
-}
 
 /* 2. Make the actual UI elements catch clicks again */
 .top-bar, 
@@ -165,8 +164,6 @@
     /* REMOVE the fixed width: 4500px */
     width: max-content; 
     height: auto;
-    left: 3400px; 
-    top: -100px;
     
     display: flex;        /* Align cards in a row */
     flex-direction: row;
@@ -202,7 +199,7 @@
     padding: 120px; /* Space inside the dashed border */
     
     position: absolute;
-    left: 3400px;
+    left: 2200px;
     top: -100px;
     
     width: max-content; /* Allows box to grow as wide as cards need */
@@ -220,8 +217,28 @@
     top: auto !important;  /* Let Flexbox handle vertical position */
     
     /* ADD THESE TO PREVENT BUNDLING */
-    width: 800px;  /* Set a fixed width for your cards */
     flex-shrink: 0; /* Prevents cards from squishing when box is small */
     pointer-events: auto; 
 }
 
+/* Disable expensive filters during movement */
+body.is-dragging .mindmap-card {
+    box-shadow: none !important;
+    transition: none !important;
+}
+
+/* Disable card lift/shadow transitions while the world is moving */
+body.is-dragging .project-preview-card,
+body.is-dragging .mindmap-card {
+    pointer-events: none !important; /* Stop hover detection */
+    transition: none !important;     /* Stop CSS animations */
+}
+
+.ui-layer, 
+.piv-nav-container, 
+.top-bar {
+    /* Force these onto their own GPU layer so the canvas doesn't affect them */
+    transform: translateZ(0); 
+    backface-visibility: hidden;
+    perspective: 1000;
+}

@@ -14,19 +14,18 @@
     z-index: 1;
     visibility: visible !important;
     opacity: 1 !important;
-    width: auto;
 }
 
 /* Hero/Home specifically */
 .hero-card {
-    width: 900px;
+    width: 600px;
     height: fit-content;
     align-items: center;
     border-radius: 60px;
 }
 
 .card-image-circle {
-    width: 300px; height: 400px;
+    width: 200px; height: 300px;
     border-radius: 300px; 
     overflow: hidden;
     background: #ffffff;
@@ -40,7 +39,7 @@
 .hero-title {
     display: block;
     font-weight: 700;
-    font-size: var(--card-title-size);
+    font-size: var(--hero-font-size);
     line-height: 0.95;
     letter-spacing: -0.04em;
     color: #000;
@@ -51,7 +50,7 @@
 /*This section is for the "Goals M2.2 Section"*/
 .card-goal-header {
     font-weight: 700;
-    font-size: var(--hero-font-size);
+    font-size: var(--card-title-size);
     position: relative;
     background: white;
     padding: 30px 60px;
@@ -68,7 +67,7 @@
 #Goals-card {
     padding: 30px 100px;
     min-width: auto;
-    border-radius: 60px;
+    border-radius: 30px;
 }
 
 /* Sub-Cards */
@@ -92,11 +91,11 @@
 
 .sub-card {
     background: white;
-    border-radius: 40px;
+    border-radius: 30px;
     padding: 40px 50px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     border: 1px solid #eee;
-    width: 700px;
+    width: 500px;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     pointer-events: auto !important;
@@ -109,7 +108,7 @@
 
 
 .sub-header {
-    font-size: 24px;       /* Clear distinction from body text */
+    font-size: 18px;       /* Clear distinction from body text */
     margin-top: 10px; 
     margin-bottom: 15px;     /* Space between tags and title */
     color: #1a1a1a;
@@ -127,14 +126,14 @@
 
 /*VISON CARD STYLE*/
 .vision-card {   
-    width: 1300px;
+    width: 650px;
     height: fit-content; 
-    padding: 60px;           
+    padding: 20px;           
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     background: #ffffff;
-    border-radius: 60px;   
+    border-radius: 30px;   
 }
 
 /* Header styling using your variables */
@@ -147,27 +146,26 @@
 /* Body styling with an internal scrollbar */
 .vision-card .card-body {
     overflow-y: auto;      /* Allows scrolling inside the card */
-    padding-right: 20px;   /* Space for the scrollbar */
 }
 
 .vision-card p {
     font-size: var(--vision-body-size);
     line-height: var(--vision-line-height);
     color: #333;
-    margin: 24px;
+    margin: 15px;
 }
 
 /*AMBITION CARD STYLE*/
 
 .ambition-card {
-    width: 1300px;
+    width: 650px;
     height: fit-content;        
-    padding: 60px;           
+    padding: 20px;           
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     background: #ffffff;
-    border-radius: 60px;   
+    border-radius: 30px;   
 }
 
 /* Header styling using your variables */
@@ -180,27 +178,26 @@
 /* Body styling with an internal scrollbar */
 .ambition-card .card-body {
     overflow-y: auto;      /* Allows scrolling inside the card */
-    padding-right: 20px;   /* Space for the scrollbar */
 }
 
 .ambition-card p {
     font-size: var(--vision-body-size);
     line-height: var(--vision-line-height);
     color: #333;
-    margin: 24px;
+    margin: 15px;
 }
 
 /*PI and Weakness CARD STYLE*/
 
 .PI-card {
-    min-width: 900px;
+    width: 450px;
     height: fit-content;      
-    padding: 60px;           
+    padding: 20px;           
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
     background: #ffffff;
-    border-radius: 60px;  
+    border-radius: 30px;  
     align-items: stretch; 
     gap: 100px;
 }
@@ -215,28 +212,26 @@
 /* Body styling with an internal scrollbar */
 .PI-card .card-body {
     overflow-y: auto;      /* Allows scrolling inside the card */
-    padding-right: 20px;   /* Space for the scrollbar */
 }
 
 .PI-card p {
     font-size: var(--vision-body-size);
     line-height: var(--vision-line-height);
     color: #333;
-    margin: 24px;
+    margin: 15px;
 }
 
 
 /*PI strength and process CARD STYLE*/
 
 .PIS-card {
-    min-width: 900px;
     height: fit-content;      
-    padding: 60px;           
+    padding: 20px;           
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
     background: #ffffff;
-    border-radius: 60px;  
+    border-radius: 30px;  
     align-items: stretch; 
     gap: 100px;
 }
@@ -251,14 +246,32 @@
 /* Body styling with an internal scrollbar */
 .PIS-card .card-body {
     overflow-y: auto;      /* Allows scrolling inside the card */
-    padding-right: 20px;   /* Space for the scrollbar */
+    
 }
 
 .PIS-card p {
     font-size: var(--vision-body-size);
     line-height: var(--vision-line-height);
     color: #333;
-    margin: 24px;
+    margin: 15px;
+}
+
+/* Force the diagram to be large */
+.process-diagram-wrapper img {
+    width: auto;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    max-width: none !important;
+}
+
+/* Specific Card Styling */
+#PIStrength-card {
+    width: 800px;
+    padding: 20px ; /* Your custom preference */
+    box-sizing: border-box; /* Keeps padding inside the 2200px width */
+    display: flex;
+    flex-direction: column;
 }
 
 

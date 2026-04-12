@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Canvas Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="viewport">
+
+        <!--Here starts the first layer (the static UI)-->
+
+         <div class="ui-layer">
+            <div class="top-bar">
+                <div class="left-group">
+                    <div class="floating-card logo-card" >
+                        <div class="circle-icon"></div>
+                    </div>
+                    
+                    <div class="floating-card nav-group">
+                        <div class="nav-item" onclick="navigateTo('piv')">
+                            <img src="Images/piv-icon.svg" alt="PI&V" class="nav-svg icon-boost">
+                        </div>
+                        <div class="nav-item" onclick="navigateTo('archive')">
+                            <img src="Images/archive-icon.svg" alt="Archive" class="nav-svg">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-group">
+                    <div class="floating-card chat-card">
+                        <img src="Images/contact-icon.svg" alt="Chat" class="nav-svg">
+                    </div>
+                </div>
+            </div>
+
+            <!--Here starts the general navigation system-->
+
+            <div id="piv-mouse-tooltip" class="piv-mouse-tooltip"></div>
+
+                <div class="piv-nav-container">
+                <div class="piv-nav-inner">
+                    <div class="piv-dot active" data-target="Home-card" data-label="Hi!" data-scale="1.0"></div>
+                    <div class="piv-dot" data-target="Vision-card"  data-label="Vision" data-scale="0.5"></div>
+                    <div class="piv-dot" data-target="Ambition-card" data-label="My Future Ambition" data-scale="0.5"></div>
+
+                    <div class="piv-pill-column">
+                        <div class="pill-bg"></div>
+                        <div class="piv-sub-dot top-dot" data-target="reflection-group" data-label="Reflection"></div>
+                        <div class="piv-dot purple-anchor" data-target="identity-cluster-box" data-label="Professional Identity" data-scale="0.29"></div>
+                        <div class="piv-sub-dot bottom-dot" data-target="project-archive-hub" data-label="Projects Archive" data-scale="0.29"></div>
+                    </div>
+
+                    
+                    <div class="piv-dot" data-target="goals-group" data-label="Goals" data-scale="0.5"></div>
+                </div>
+            </div>
+
+            <!--Here starts the Project Window/Sidebar-->
+
+            <div id="project-sidebar" class="project-sidebar">
+                <div id="sidebar-resizer" class="resizer"></div>
+                
+                <div class="sidebar-nav">
+                    <button onclick="closeSidebar()" class="nav-btn close-btn">✕ Close</button>
+                    <div class="nav-right">
+                        <button id="prev-project" class="nav-btn">←</button>
+                        <button id="next-project" class="nav-btn">→</button>
+                    </div>
+                </div>
+
+                <div id="sidebar-content" class="sidebar-body">
+                    </div>
+            </div>
+
+
+            <!--Here Starts the Canvas-->
+            <div id="canvas">
+
+                <!--Find here the Set-Up for the line connection of the PIV section-->
+                <svg id="lines-layer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible;"></svg>
+
+
+                <!--Find here the Set-Up for the Cards of the PIV section-->
+                <div id="piv-world-region" style="position: absolute; top: 9000px; left: 9000px;">
+
+
+
+
+                    <div class="mindmap-card hero-card" id="Home-card" >
+                    <div class="node node-right"></div>
+                    <div class="card-image-circle">
+                        <img src="Images/profile.jpg" alt="Profile">
+                    </div>
+                    <div class="start-card-content">
+                        <span class="hero-title">I design for </span>
+                        <span class="hero-title">People, Technology</span>
+                        <span class="hero-title">and Nature.</span>
+                    </div>
+                </div>
+
+
+                
+                <div class=" mindmap-card vision-card" id="Vision-card" style="position: absolute; top: -200px; left: 1500px;">
+                    <div class="node node-left"></div>
+                    <div class="node node-bottom"></div>
+                    
+                    <div class="card-content-wrapper">
+                        <header>
+                            <h2 class="card-title">Vision</h2>
+                            <div class="header-line"></div>
+                        </header>
+
+                        <section class="card-body">
+                            <p> Although born from the same need to reshape our worldview, posthumanism stands as the antithesis to humanism [1, 3]. It emerges from the growing concern about climate change, but also the development of smart technologies (e.g., Artificial Intelligence (AI), Digital Twins (DTs), Robots…)[1, 2]. This shift raises an important question: what is the relationship between humans, technology and nature? </p>
+                            <P> In my view, posthumanism is the realization that we are equally connected within one singular system. The ever-increasing blur between artificial and natural through technology gaining sentience, humans and nature merging with technology leads to an insight that the world can no longer be described in binary terms like human/nonhuman or artificial/natural [1, 3]. It is a co-dependent system, and solutions and our designs must reflect this new reality. </p>
+                            <p> This new worldview is already pivoting economics, where we are moving from a knowledge-based, user-centered model toward the Transformation Economy [4]. This model recognized the need to stop viewing the world as a resource and instead understand it as a living system [4]. It highlights the need to move away from “one-size-fits-all” solutions to embrace local customization and build trust between stakeholders [4]. This means we need to become deeply sensitive to context and perspectives of every entity and variable in the network: human, technological and nature alike. </p>
+                            <p> While I embrace the core goal of post-humanism, my vision remains pragmatic. I believe that we cannot ignore our human bias while taking a different perspective. Instead, we must use our human quality of empathy to understand the relationships that connect us to all other stakeholders. This empathetic understanding will lead to a clearer realization of the consequences of our actions, both positive and negative.</p>
+                            <p>For the human-centred design field, this means change. The focus must switch from designing to create value for humans towards solutions that create value for all, accounting for the impact on and relationship with the entire system. Because humans have a strong actuator force, we also have the responsibility to maintain the system.</p>
+                            <p> The new goal for designers is to foster these reciprocal relationships where value flows both ways. This does not mean that our existing human-centred methods are obsolete; they instead become a foundation that can evolve into methods that include all stakeholders and acknowledge the complexity of contexts.</p>
+                            <p>Designers will become instigators of dialogue and leaders of holistic thinking, applying empathy to explore and shape co-dependent relationships between the three entities and their unique contexts. Through design thinking, system thinking and lifelong learning, they will remain curious, adaptable, and capable of navigating an increasingly complex world.</p>
+                        
+                        </section>
+
+                        <footer class="card-footer">
+                            <button class="lit-button">
+                                <img src="Images/sources.svg" alt="Literature">
+                            </button>
+                        </footer>
+                    </div>
+
+                        </div>
+
+                <div class="mindmap-card ambition-card" id="Ambition-card" style="position: absolute; top: 1100px; left: 1500px;">
+                    <div class="node node-top"></div>
+                    <div class="node node-right"></div>
+                    <!--Okay so this is for future Helena who is writing the text of the portfolio, I would like you to see if putting the Future reflection makes more sense-->
+                    <div class="card-content-wrapper">
+                        <header>
+                            <h2 class="card-title">My Future Ambition</h2>
+                            <div class="header-line"></div>
+                        </header>
+
+                        <section class="card-body">
+                            <p>After completing my master’s, I aim to start my career as a design researcher in industry, focusing on user experience and the relationship between humans and technology. I am particularly interested in how emerging technologies shape the way people experience and understand the world, and how design can create meaningful and responsible interactions within this context.</p>
+                            <p>To pursue this, I intend to work in an innovation or R&D department within a medium to large organization. In this environment, I want to contribute to projects that go beyond short-term solutions and instead focus on long-term value creation. I am especially drawn to companies that align with the transformation economy, where the goal is not only to deliver products or services, but to create meaningful impact for individuals and communities in a conscious and responsible way.</p>
+                            <p>Starting in industry will allow me to further develop my practical skills, gain experience working within multidisciplinary teams, and better understand how design research operates in real-world contexts. At the same time, it will help me refine my interests within the field and identify the areas in which I want to deepen my expertise.</p>
+                            <p>After gaining one to two years of professional experience, I aim to revisit the possibility of pursuing a PhD in Industrial Design. This step would allow me to deepen my research skills and further explore the intersection between design, technology, and human experience. I am particularly interested in contributing to the connection between academia and industry, translating theoretical insights into practical applications. Additionally, I am motivated by an interest in teaching and mentoring, and I see a PhD as an opportunity to develop these roles further.</p>
+                            <p>At the same time, I remain open to continuing my career within industry if I find opportunities that allow me to grow and create meaningful impact. Staying in practice would enable me to remain closely connected to ongoing developments in the field and continue evolving as a designer in a dynamic environment.</p>
+                            <p>Overall, I envision a future in which I position myself at the intersection of research and practice, contributing to the development of human-centred posthuman technological experiences while continuously growing as both a designer and researcher.</p>
+                        </section>
+                    </div>
+                </div>
+            
+
+            <div class="section-box" id="identity-cluster-box">
+                <div class="node node-top"></div>
+                <div class="node node-bottom"></div>
+                    
+
+                <div class="mindmap-card PI-card" id="PI-card" style="pointer-events: auto;">
+                    <div class="node node-left"></div>
+
+                    <div class="card-content-wrapper">
+                        <header>
+                            <h2 class="card-title">Professional Identity</h2>
+                            <div class="header-line"></div>
+                        </header>
+
+                        <section class="card-body">
+                            <p> As designer I create for people, technology, and believe that such designs solutions arise from environments of mutual listening and trust, enabled by curiosity and empathy. I value community, interdisciplinarity and trust, striving to create a work environment that includes multiple perspectives. My creative, resilient, and passionate nature guide me to be a student for life; valuing exploration, freedom and flexibility and the believe that I can always learn and innovate in my work and self.</p>
+                            <p> The rising prominence of humans and technology leads me to believe that it important to be critical about the value we assign any single entity within a context. It is important to value balance, transparency, and responsibility. I strive to be critical of my own work and try to connect the entities in any system that are meaningful, aware of the consequences that it might have on the larger system. </p>
+                            <p> My interests and strengths lie in the R&D of concepts which led me to specialize in the Research Design and Development (RDD) track which aligns with my hands-on, practical nature and my ambition to work within this industry. </p>
+                            <p> My specialization is the exploration of human-technology relationships to design solutions that create reciprocal value for the larger system: humans, technology, and nature. My work rejects ‘one-size-fits-all’ solutions; instead I focus on the local scale to deliver smart and personalized solutions sensitive to unique contexts. </p>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="mindmap-card PIS-card" id="PIStrength-card" style="pointer-events: auto;">
+
+                    <div class="card-horizontal-container">
+                
+                    <div class="card-content-wrapper">
+                        <header>
+                            <h2 class="card-title">Process and Strengths</h2>
+                            <div class="header-line"></div>
+                        </header>
+
+                        <section class="card-body">
+                            <p> My process starts with exploration and discovery. I use both empathetic and analytical attitudes to gain a deeper understanding of the context, target group and all stakeholders involve to form a holistic view. I use theory (UX, Interaction, and Behavioural Change), and diverse evaluation methods (see activity <span class="project-citation" data-project="LIVID.html">LIVID</span>) like interviews, observations, and repertory grids. My core aim here, is to get gain new knowledge and insights through literature research and data analysis. Throughout this stage and the entire process, I adopt an entrepreneurial mindset to better understand stakeholders and practice value-based leadership. I have developed a strong leadership attitude that goes hand in hand with my communication skills for leading presentations, co-creation sessions, and user tests. I take a proactive attitude in projects and push myself to find way to implement concepts into meaningful systems, requiring me to apply system thinking.</p>
+                            <p> With these skills and my process, this early research informs the ideation and development of concepts and prototypes. I adopt an out-of-the-box mindset and a hands-on attitude to actively engage in these ideation sessions and make quick and dirty prototypes that can be tested (Figure 6, 7, 10). My background as a Design Academy Eindhoven Alumni has given me a strong eye for detail, form and aesthetics. The later part of this stage focuses on visualization and prototyping a demonstrator (Figure 5, 8, 9, 11). I use my technical skills (3D modelling, sketching, Figma, and workshop tools like 3D printers and laser cutters) together with my communicative, adaptable mindset to convey my intentions to peers and professionals. I keep learning how to seamlessly integrate technology and choose the best materials and methods to bring ideas to life. </p>
+                            <p> The use of data is central to my work (Figure 5), informing and guiding decisions across all design phases. I am developing an analytical attitude that applies both qualitative (which is my current strength) and quantitative analysis. I use programming and visualization skills to understand underlying messages in data and design outcomes that embed and use data-driven technologies like AI and Digital Twins (Figure 5, 6, 10), to create context aware and personalized solutions. </p>
+                            
+                        </section>
+                    </div>
+
+
+                    <div class="card-visual-column">
+                        <div class="process-diagram-wrapper">
+                            <h3>My Process (Double Diamond)</h3>
+                            <img src="Images/process.jpg" alt="Double Diamond Process">
+                        </div>
+                    </div>
+
+
+                    </div>
+                </div>
+
+            <div class="mindmap-card PI-card" id="PIWeakness-card" style="pointer-events: auto;">
+                    
+                    <div class="node node-right"></div>
+
+                    <div class="card-content-wrapper">
+                        <header>
+                            <h2 class="card-title">What do I need to develop?</h2>
+                            <div class="header-line"></div>
+                        </header>
+
+                        <section class="card-body">
+                            <p>To fully shape my professional vision as a design researcher, I am focusing on connecting my existing strengths and three growth areas:</p>
+                            <p>For my development, I have always focused solely on my weaknesses. However, to become a successful professional, I need to highlight my strengths as well. Therefore, I need to focus on my passion for making and bringing concepts to life. I want to become a design researcher who can create functioning prototypes that generate knowledge to produce the final concept. Focusing on pushing this strength forward is not only good for my skills but also for my confidence as a professional.</p>
+                            <p>Nevertheless, it is important to keep growing and pushing myself out of my comfort zone to find other strengths. Consequently, I recognize that modern design challenges are multi-faceted and rarely involve a single perspective. Although I find reaching out to diverse stakeholders challenging, I view this as a critical growth point. Mastering the ability to manage participation and communicate across different perspectives is essential for creating interventions that are both inclusive and effective.</p>
+                            <p>Moreover, while my background is rooted in qualitative methods, I am now prioritizing quantitative literacy to handle the complex, context-dependent data generated by emerging technologies. My goal is to combine both data types to recognize patterns and reach solid conclusions. Strengthening my analytical thinking across both domains ensures that my qualitative expertise remains a core strength while being supported by data-driven insights.</p>
+                            <p>Advancing my programming skills is a practical necessity for my work. Higher-level technical skills will allow me to build more advanced interactive prototypes and gain a deeper, data-informed understanding of how people use technology in different contexts.</p>
+                        </section>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!--WORKING HERE-->
+
+                <div class="card-group" id="reflection-group" style="position: absolute; top: -1200px; left: 4850px;">
+                        <div class="node node-bottom"></div>
+                    
+
+                    <div class="reflection-stack">
+                        
+                        <div class="static-reflection-card past-card">
+                            <h4>Past:</h4>
+
+                        <div class="scroll-area">
+                            <p>Throughout my studies, I have developed from an intuitive, hands-on designer into a reflective and self-directed professional who combines sensitivity, analytical thinking, and technical knowledge. My growth can be understood through three key transformations: from intuition to grounded reasoning, from making to research-informed design, and from personal exploration to consciously directing my own development.</p>
+                            <p>My bachelor at the Design Academy Eindhoven formed the foundation of my design identity. Here, I developed strong creative and aesthetic skills, learning to connect ideas, relate them to existing concepts, and translate them into tangible outcomes. Working hands-on with materials such as wood, metal, ceramics, and textiles, I became a designer who learns through making, experimenting, and iterating. This experience also shaped my attention to detail and my ability to present ideas with care and clarity.</p>
+                            <p>Most importantly, the bachelor cultivated an instinctive and sensitive approach to design. I learned to observe the world closely and interpret meaning from what I saw, allowing context to guide my design decisions. As a result, I became a proactive and curious designer, open to learning from my surroundings and from others. However, while this intuitive approach was valuable, I realized towards the end of my bachelor that I lacked a strong foundation to explain and guide my design decisions beyond my own feelings.</p>
+                            <p>This realization led me to pursue a pre-master at TU/e, where I aimed to strengthen the theoretical and methodological grounding of my work. During this period, I was introduced to new perspectives on the design process, particularly the concept of research through design. I learned to support my projects with research, frameworks, and existing knowledge, rather than relying solely on intuition.</p>
+                            <p>The pre-master marked an important shift in how I approach design. I developed the ability to connect my instincts to established theories and methods, allowing me to position my work within a broader context. At the same time, I became more aware of my own development, learning to reflect critically on my growth and take ownership of it. This experience shaped me into a designer who not only follows intuition, but also justifies and strengthens it through knowledge and research.</p>
+                            <p>During my master, I further expanded and diversified my competences across multiple areas, integrating my intuitive and research-driven approaches into a more holistic design practice. A key focus for me was developing my competence in user and society, an area I was highly interested in but had limited experience in. Through courses such as User Experience Theory and Practice, Designing for Behaviour Change, and Constructive Design Research, as well as various projects and mentoring the Human Centred Design course, I learned to apply methods such as interviews, user testing, and probe deployments.</p>
+                            <p>These experiences deepened my understanding of users and context, allowing me to move from sensitivity to empathy. I developed the ability to analyse data, interpret insights, and switch between perspectives to better understand the needs and values of different stakeholders. As a result, I became a designer who combines intuition with human-centred methods, grounding design decisions in both observation and evidence.</p>
+                            <p>In parallel, I developed my competences in Technology and Realization and Math, Data and Computing. Through courses focused on emerging technologies and through hands-on experimentation in my projects, I learned to prototype, program, and work with data as both a source of insight and a design material. This included exploring technologies such as machine learning, digital twins, and computer vision.</p>
+                            <p>This development expanded my understanding of what design can be. I became comfortable engaging with technical systems at a conceptual level and integrating them into my design process. It also shaped my interest in human-computer interaction, where I aim to explore how technology influences the way we experience and understand the world. As a result, I now see myself as a designer who can bridge the gap between human experience and technological possibilities.</p>
+                            <p>While my competence in creativity and aesthetics was already strongly developed during my bachelor, I continued refining it throughout my master. By learning from peers, working on diverse projects, and engaging in freelance and part-time work, I strengthened my ability to structure my design process. I adopted methods such as the Double Diamond and iterative sprints, allowing me to organize ideation, co-design, and prototyping more effectively.</p>
+                            <p>This helped me transform my previously intuitive and sometimes chaotic process into a more structured and communicable approach. I learned to justify my design decisions based on insights and to integrate creativity with both research and technology.</p>
+                            <p>In the area of business and entrepreneurship, I focused on developing my leadership and collaboration skills. Through courses, mentoring roles, and freelance work, I learned how to guide teams, manage stakeholders, and communicate effectively in complex situations. I developed an understanding of how to identify values within a team and use them to support collaboration and direction.</p>
+                            <p>Although this is not an area I aim to specialize in, it has shaped me into a designer who is capable of leading projects with empathy and clarity. I have become both a collaborative leader and a self-directed professional, able to take responsibility for my own growth while supporting others.</p>
+                            <p>Across all these experiences, I have also developed essential soft skills such as communication, organization, and giving constructive feedback. In particular, my extracurricular activities, including mentoring and freelance work, taught me the importance of fostering community and creating open, supportive environments for collaboration.</p>
+                            <p>Overall, I have evolved into a designer who combines intuition, empathy, and analytical thinking with technical understanding and a strong sense of self-direction. I approach design as a continuous learning process, where reflection, experimentation, and collaboration are central. This integrated perspective shapes not only how I design, but also how I position myself as a professional within the field.</p>
+                        
+                        </div>
+
+                        </div>
+
+                        <div class="static-reflection-card past-card">
+                            <h4>Present:</h4>
+
+                            <div class="scroll-area">
+                            <p>This is a place holder text for the Present Section</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="project-archive-hub" class="mindmap-card large-archive-card" style="position: absolute; top: 1500px; left: 4140px;">
+                    
+                    <div class="node node-top" id="node-archive-top"></div>
+                    
+                    <div class="archive-header">
+                            <div class="filter-row">
+                                <button class="filter-btn active" data-filter="all">All</button>
+                            </div>
+
+                            <div class="filter-row category-groups">
+                                <div class="filter-pair">
+                                    <button class="filter-btn" data-filter="past">Past</button>
+                                    <button class="filter-btn" data-filter="present">Present</button>
+                                </div>
+                                <div class="filter-pair">
+                                    <button class="filter-btn" data-filter="tue">TU/e</button>
+                                    <button class="filter-btn" data-filter="extracurricular">Extra</button>
+                                </div>
+                            </div>
+
+                            <div class="filter-row competency-legend">
+                                <button class="filter-btn" data-filter="US">U&S</button>
+                                <button class="filter-btn" data-filter="TR">T&R</button>
+                                <button class="filter-btn" data-filter="CA">C&A</button>
+                                <button class="filter-btn" data-filter="MDC">M,D&C</button>
+                                <button class="filter-btn" data-filter="BE">B&E</button>
+                            </div>
+                        </div>
+
+                        <div class="archive-slider">
+                            <div id="project-track" class="project-track">
+                                </div>
+                        </div>
+                        
+                        <div id="archive-dots" class="archive-dots">
+                            </div>
+                    
+                </div>
+
+
+
+               <div class="card-group" id="goals-group" style="position: absolute; top: 0; left: 8500px;">
+    
+                    <div class="card-goal-header" id="Goals-header">
+                        <div class="node node-left"></div>
+                        <div class="card-header">
+                            M2.2 Goals</div>
+                    </div>
+
+                    <div class="sub-card-stack">
+
+                        <div class="sub-card">
+                            <div class="sub-header"><strong>Prototyping: from paper to 3D modelling to reality</strong></div>
+                            <div class="card-tags">
+                                <span class="tag" data-competence="TR">T&R</span>
+                                <span class="tag" data-competence="CA">C&A</span>
+                                <span class="tag" data-competence="MDC">M,D&C</span></div>
+                            <div class="sub-body"><p>During my FMP, I will realise a functional medium-fidelity research prototype that demonstrates the core concept of my design for the energy transition. I will develop this prototype through two iterative build cycles, progressing from concept sketches and low-fidelity models to a 3D model and a physically realised prototype. The final research prototype should be robust and finished for the user evaluation on the 11th of march 2026.</p></div>
+                        </div>
+
+                        <div class="sub-card">
+                            <div class="sub-header"><strong>Reaching out to Stakeholders and managing their intervention</strong></div>
+                            <div class="card-tags">
+                                <span class="tag" data-competence="US">U&S</span>
+                                <span class="tag" data-competence="BE">B&E</span></div>
+                            <div class="sub-body"><p>During my FMP, I will strengthen my stakeholder communication by actively engaging with relevant actors in the energy transition. I will conduct semi-structured interviews with at least 4 domain experts and 6 households to understand their roles, needs, and perspectives. For at least 4 of these stakeholders, I will organise two follow-up sessions to present my research prototypes and gather feedback. I will document each interaction in brief summaries and translate the feedback into improvement for the research prototypes. This will be done across the research prototype development section of the FMP project.</p></div>
+                        </div>
+
+                        <div class="sub-card">
+                            <div class="sub-header"><strong>Quantitative Data Gathering, Analysis and Implementation</strong></div>
+                            <div class="card-tags">
+                                <span class="tag" data-competence="MDC">M,D&C</span>
+                                <span class="tag" data-competence="US">U&S</span></div>
+                            <div class="sub-body"><p>During my FMP semester, I will collect quantitative data from at least 20 participants using the UEQ and TAM questionnaires and interaction logging. I will analyse this dataset in Python using statistical methods fitting the data (e.g., descriptive statistics) and create a minimum of three data visualisations. I will interpret these results and translate them into knowledge that I will be documented in a paper (FMP deliverable) to contribute to the development of smart technologies for the energy transition. This will be completed before the final FMP submission deadline of June 10th 2026.</p></div>
+                        </div>
+
+
+                        <div class="sub-card">
+                            <div class="sub-header"><strong>Analytical Thinking</strong></div>
+                            <div class="card-tags">
+                                <span class="tag" data-competence="US">U&S</span>
+                                <span class="tag" data-competence="MDC">M,D&C</span></div>
+                            <div class="sub-body"><p>During my FMP, I will strengthen my analytical thinking by systematically comparing and interpreting qualitative data (interviews) and quantitative data (UEQ, TAM, and interaction logs). I will document my reasoning in at least three structured reflections, identifying patterns, contradictions, and key insights. I will translate these insights into design directions and final results for the end evaluation. I will discuss my analysis with my coach during feedback sessions and incorporate the feedback into my design process and final deliverable. This will be done across the whole period of the FMP project.</p></div>
+                        </div>
+
+                        <div class="sub-card">
+                            <div class="sub-header"><strong>Programming</strong></div>
+                            <div class="card-tags">
+                                <span class="tag" data-competence="TR">T&R</span>
+                                <span class="tag" data-competence="MDC">M,D&C</span></div>
+                            <div class="sub-body"><p>During my FMP, I will strengthen my programming competences by completing an online course in JavaScript and HTML/CSS and applying this knowledge in developing my own portfolio website. In addition, I will practice my competences in Arduino by implementing a digital component in my research prototype (e.g., Arduino-based or web-based interaction) that enables user interaction with the system. I will document my code and learning progress and deliver both the functional website and the working programmed prototype before the FMP deadline on 10 June 2026.</p></div>
+                        </div>
+                </div>
+            </div>
+    </div>
+
+            <script type="module" src="JavaScript/main.js"></script>
+
+</body>
+</html>

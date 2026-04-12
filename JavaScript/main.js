@@ -8,6 +8,7 @@ import { updateLines, updateReflectionLines, updateArchiveConnection } from './l
 import { initExpertiseAreas } from './content.js';
 import { initProjectScanner } from './project_scanner.js';
 import { initFilters } from './filter_projects.js';
+import {initProjectCitations} from './project_ciations.js';
 
 window.navigateTo = navigateTo;
 
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initExpertiseAreas();
     initPivNav();
     initProjectScanner();
+    initProjectCitations();
     initFilters();
 
 //--PROJECT WINDOW LOGIC

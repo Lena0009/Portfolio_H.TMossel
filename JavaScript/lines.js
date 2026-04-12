@@ -1,6 +1,8 @@
 // JavaScript/lines.js
 import { state } from './config.js';
 
+let isUpdatingLines = false;
+
 export function updateLines() {
     const svg = document.getElementById('lines-layer');
     if (!svg) return;
@@ -125,10 +127,37 @@ export function updateLines() {
     }
 
 
+    // --- INTEGRATED ARCHIVE CONNECTION ---
+    const canvas = document.getElementById('canvas');
+    const clusterBox = document.getElementById('identity-cluster-box');
+    const archiveHub = document.getElementById('project-archive-hub');
+    
+    if (canvas && clusterBox && archiveHub) {
+        const canvasRect = canvas.getBoundingClientRect();
+        const boxRect = clusterBox.getBoundingClientRect();
+        const hubRect = archiveHub.getBoundingClientRect();
+
+        // Calculate points (Your logic)
+        const startX = ((boxRect.left + boxRect.right) / 2 - canvasRect.left) / state.scale;
+        const startY = (boxRect.bottom - canvasRect.top) / state.scale;
+
+        const endX = ((hubRect.left + hubRect.right) / 2 - canvasRect.left) / state.scale;
+        const endY = (hubRect.top - canvasRect.top) / state.scale;
+
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        line.setAttribute("d", `M ${startX} ${startY} L ${endX} ${endY}`);
+        line.setAttribute("stroke", "#333");
+        line.setAttribute("stroke-width", "4");
+        line.setAttribute("fill", "none");
+        line.setAttribute("stroke-dasharray", "10, 10");
+        line.setAttribute("stroke-linecap", "round");
+        svg.appendChild(line);
+    }
+
+
 
 // --- PART 2: SEPARATE REFLECTION BRANCH ---
     // This connects the DASHED BOX itself to the REFLECTION HUB
-    const clusterBox = document.getElementById('identity-cluster-box');
     const reflectionGroup = document.getElementById('reflection-group');
 
     if (clusterBox && reflectionGroup) {

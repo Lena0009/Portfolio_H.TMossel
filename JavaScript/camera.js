@@ -1,45 +1,54 @@
-// JavaScript/camera.js
 import { state, canvas, viewport, WORLD_SIZE } from './config.js';
 import { updateLines } from './lines.js';
 
+// 1. Performance Throttler
+let isUpdatingLines = false;
+
 export function initCamera() {
-    // Applying initial position from config
-    canvas.style.transform = `scale(${state.scale})`;
-    canvas.style.left = state.currentX + 'px';
-    canvas.style.top = state.currentY + 'px';
+    applyStyle();
 
     viewport.addEventListener('mousedown', (e) => {
+        // Allow UI interaction
         if (e.target.closest('.piv-nav-container')) return;
-
 
         state.isDragging = true;
         viewport.style.cursor = 'grabbing';
-        state.startX = e.clientX - state.currentX;
-        state.startY = e.clientY - state.currentY;
+        
+        // Capture initial positions
+        state.dragStartX = e.clientX;
+        state.dragStartY = e.clientY;
+        state.originalX = state.currentX;
+        state.originalY = state.currentY;
+
+        canvas.style.transition = "none";
     });
 
     window.addEventListener('mousemove', (e) => {
-
         if (!state.isDragging) return;
 
-            const dx = e.clientX - (state.startX + state.currentX);
-            const dy = e.clientY - (state.startY + state.currentY);
+        const moveX = e.clientX - state.dragStartX;
+        const moveY = e.clientY - state.dragStartY;
     
-    // Only move if the mouse has traveled a bit (threshold of 5px)
-        if (Math.sqrt(dx*dx + dy*dy) > 5) {
-            state.currentX = e.clientX - state.startX;
-            state.currentY = e.clientY - state.startY;
+        // Only disable clicks and move if they move more than 5px (a real drag)
+        if (Math.sqrt(moveX*moveX + moveY*moveY) > 5) {
+            canvas.style.pointerEvents = 'none'; // Performance boost only when moving
+            document.body.classList.add('is-dragging');
+            
+            state.currentX = state.originalX + moveX;
+            state.currentY = state.originalY + moveY;
 
-        checkBounds();
-        applyStyle();
-
+            checkBounds();
+            applyStyle();
         }
     });
 
     window.addEventListener('mouseup', () => {
         state.isDragging = false;
+        canvas.style.pointerEvents = 'auto'; // RE-ENABLE CLICKS
+        document.body.classList.remove('is-dragging');
         viewport.style.cursor = 'grab';
     });
+
 
     viewport.addEventListener('wheel', (e) => {
         e.preventDefault();
@@ -48,11 +57,8 @@ export function initCamera() {
         
         let newScale = e.deltaY < 0 ? state.scale + zoomSpeed : state.scale - zoomSpeed;
         
-
-        //Zoom limits 
-        const MIN_ZOOM = 0.30; // How far you can zoom out (0.15 = 15% size)
-        const MAX_ZOOM = 2.0;  // How far you can zoom in (2.0 = 200% size)
-         // Use Math.max with MIN_ZOOM to ensure you can't zoom out past 15%
+        const MIN_ZOOM = 0.30; 
+        const MAX_ZOOM = 2.0;  
         state.scale = Math.min(Math.max(MIN_ZOOM, newScale), MAX_ZOOM);
 
         const canvasMouseX = (e.clientX - state.currentX) / oldScale;
@@ -61,122 +67,150 @@ export function initCamera() {
         state.currentX = e.clientX - canvasMouseX * state.scale;
         state.currentY = e.clientY - canvasMouseY * state.scale;
 
-        canvas.style.transition = "transform 0.1s ease-out, left 0.1s ease-out, top 0.1s ease-out";
+        // Smooth zoom transition (only for transform)
+        canvas.style.transition = "transform 0.05s linear";
         checkBounds();
         applyStyle();
     }, { passive: false });
 }
 
 export function checkBounds() {
-    const scaledSize = WORLD_SIZE * state.scale;
+    const scaledWidth = 30000 * state.scale;
+    const scaledHeight = 20000 * state.scale;
+
     if (state.currentX > 0) state.currentX = 0;
     if (state.currentY > 0) state.currentY = 0;
-    if (state.currentX < window.innerWidth - scaledSize) state.currentX = window.innerWidth - scaledSize;
-    if (state.currentY < window.innerHeight - scaledSize) state.currentY = window.innerHeight - scaledSize;
-    applyStyle();
+
+    if (state.currentX < window.innerWidth - scaledWidth) {
+        state.currentX = window.innerWidth - scaledWidth;
+    }
+    if (state.currentY < window.innerHeight - scaledHeight) {
+        state.currentY = window.innerHeight - scaledHeight;
+    }
 }
 
 function applyStyle() {
-    canvas.style.left = state.currentX + 'px';
-    canvas.style.top = state.currentY + 'px';
-    canvas.style.transform = `scale(${state.scale})`;
+    // Reset legacy properties to prevent conflict
+    canvas.style.left = '0';
+    canvas.style.top = '0';
 
+    // Apply GPU-accelerated transform
+    canvas.style.transform = `translate3d(${state.currentX}px, ${state.currentY}px, 0) scale(${state.scale})`;
+
+    // Throttled line updates
+    if (!isUpdatingLines) {
+        isUpdatingLines = true;
+        requestAnimationFrame(() => {
+            updateLines();
+            updateArchiveConnection();
+            updateReflectionLines();
+            isUpdatingLines = false;
+        });
+    }
 }
 
-/* NAVIGATION OF THE TOP BUTTONS LOGIC START HERE */
-function navigateTo(location) {
-    const targetScale = 1.0;
+/* --- NAVIGATION LOGIC --- */
 
-    // Use a simpler math for centering that works regardless of the canvas size
+export function navigateTo(location) {
+    let targetScale;
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
 
-    const heroCard = document.querySelector('.hero-card');
-    const cardWidth = heroCard ? heroCard.offsetWidth : 1400;
-    const cardHeight = heroCard ? heroCard.offsetHeight : 800;
-
-    const destinations = {
-        'piv': { 
-            x: centerX - (state.cardX + cardWidth /2) * targetScale, 
-            y: centerY - (state.cardY + cardHeight /2) * targetScale
-        },
-        'archive': { 
-            x: centerX - 5000 * targetScale, 
-            y: centerY - 2500 * targetScale
+    // Helper to find absolute world position of any card
+    const getTargetPos = (id) => {
+        const el = document.getElementById(id);
+        if (!el) return null;
+        let left = 0, top = 0, current = el;
+        while (current && current.id !== 'canvas') {
+            left += current.offsetLeft || 0;
+            top += current.offsetTop || 0;
+            current = current.offsetParent;
         }
+        return { 
+            x: left + (el.offsetWidth / 2), 
+            y: top + (el.offsetHeight / 2) 
+        };
     };
 
-    const target = destinations[location];
-    if (!target) return;
+    let targetCoord;
+    if (location === 'piv') {
+        targetCoord = getTargetPos('Home-card');
+        targetScale = 1.0;
+    } else if (location === 'archive') {
+        targetCoord = getTargetPos('project-archive-hub');
+        targetScale = 0.5;
+    }
 
-    // 2. Update state (Matches your console error fix)
-    state.currentX = target.x;
-    state.currentY = target.y;
+    if (!targetCoord) return;
+
+    // RESTORE THE VIEW
+    canvas.style.transition = "transform 0.8s cubic-bezier(0.65, 0, 0.35, 1)";
+    
     state.scale = targetScale;
+    state.currentX = centerX - targetCoord.x * state.scale;
+    state.currentY = centerY - targetCoord.y * state.scale;
 
-    // 3. Apply animation
-    canvas.style.transition = "all 0.8s cubic-bezier(0.65, 0, 0.35, 1)";
-    canvas.style.transform = `scale(${state.scale})`;
-    canvas.style.left = state.currentX + 'px';
-    canvas.style.top = state.currentY + 'px';
+    applyStyle();
 
     setTimeout(() => {
         canvas.style.transition = "none";
-        checkBounds();
-        updateLines();
+        // CRITICAL: re-enable pointer events if you disabled them during drag
+        canvas.style.pointerEvents = "auto"; 
     }, 800);
 }
-
 window.navigateTo = navigateTo;
 
+// Shared movement helper exported for other modules
+export const moveCameraTo = (targetId, scale) => {
+    const el = document.getElementById(targetId);
+    if (!el) return;
 
-// JavaScript/camera.js
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    const getAbsolutePos = (target) => {
+        let left = 0, top = 0, current = target;
+        while (current && current.id !== 'canvas') {
+            left += current.offsetLeft || 0;
+            top += current.offsetTop || 0;
+            current = current.offsetParent;
+        }
+        return { left, top };
+    };
+
+    const pos = getAbsolutePos(el);
+    const targetX = pos.left + (el.offsetWidth / 2);
+    const targetY = pos.top + (el.offsetHeight / 2);
+
+    // Set transition ONLY for transform
+    canvas.style.transition = "transform 0.8s cubic-bezier(0.65, 0, 0.35, 1)";
+    
+    state.scale = scale;
+    state.currentX = centerX - targetX * state.scale;
+    state.currentY = centerY - targetY * state.scale;
+    
+    applyStyle();
+    
+    setTimeout(() => {
+        canvas.style.transition = "none";
+    }, 800);
+};
+
+/* --- DOT NAVIGATION --- */
 
 export function initPivNav() {
     const mainDots = document.querySelectorAll('.piv-dot');
     const subDots = document.querySelectorAll('.piv-sub-dot');
     const mouseTooltip = document.getElementById('piv-mouse-tooltip');
 
-    // 1. TOOLTIP MOVEMENT (Shared for all dots)
     window.addEventListener('mousemove', (e) => {
+
         if (mouseTooltip && mouseTooltip.classList.contains('visible')) {
             mouseTooltip.style.left = `${e.clientX}px`;
             mouseTooltip.style.top = `${e.clientY}px`;
         }
     });
 
-    // 2. CAMERA MOVEMENT HELPER
-    const moveCameraTo = (targetId, scale) => {
-        const el = document.getElementById(targetId);
-        if (!el) {
-            console.error("Target element not found:", targetId);
-            return;
-        }
-
-        const centerX = window.innerWidth / 2;
-        const centerY = window.innerHeight / 2;
-
-        const getAbsolutePos = (target) => {
-            let left = 0, top = 0, current = target;
-            while (current && current.id !== 'canvas') {
-                left += current.offsetLeft || 0;
-                top += current.offsetTop || 0;
-                current = current.offsetParent;
-            }
-            return { left, top };
-        };
-
-        const pos = getAbsolutePos(el);
-        const targetX = pos.left + (el.offsetWidth / 2);
-        const targetY = pos.top + (el.offsetHeight / 2);
-
-        state.scale = scale;
-        state.currentX = centerX - targetX * state.scale;
-        state.currentY = centerY - targetY * state.scale;
-        applyStyle();
-    };
-
-    // 3. MAIN DOTS LOGIC
     mainDots.forEach(dot => {
         dot.addEventListener('mouseenter', () => {
             mouseTooltip.textContent = dot.getAttribute('data-label');
@@ -185,59 +219,38 @@ export function initPivNav() {
         dot.addEventListener('mouseleave', () => mouseTooltip.classList.remove('visible'));
 
         dot.addEventListener('click', (e) => {
-        // 1. SAFETY: If the user actually clicked a SUB-DOT, stop this function
-        if (e.target.closest('.piv-sub-dot')) return;
+            if (e.target.closest('.piv-sub-dot')) return;
 
-        document.querySelectorAll('.piv-dot, .purple-anchor').forEach(d => {
-            d.classList.remove('active');
-        });
+            document.querySelectorAll('.piv-dot, .purple-anchor').forEach(d => d.classList.remove('active'));
+            document.querySelectorAll('.piv-sub-dot').forEach(sd => sd.classList.remove('selected'));
 
-        document.querySelectorAll('.piv-sub-dot').forEach(sd => {
-            sd.classList.remove('selected');
-        });
+            dot.classList.add('active');
+            const targetId = dot.getAttribute('data-target');
+            const targetScale = parseFloat(dot.getAttribute('data-scale')) || 0.5;
 
-        dot.classList.add('active');
-
-        const targetId = dot.getAttribute('data-target');
-        const targetScale = parseFloat(dot.getAttribute('data-scale')) || 0.5;
-
-        if (targetId) {
-            moveCameraTo(targetId, targetScale);
-        } else {
-            console.warn("Navigation failed: No data-target found on this dot.");
-        }
+            if (targetId) moveCameraTo(targetId, targetScale);
         });
     });
 
     subDots.forEach(sub => {
-    // Tooltip listeners (Ensure these are present)
-    sub.addEventListener('mouseenter', () => {
-        const label = sub.getAttribute('data-label') || "Section";
-        mouseTooltip.textContent = label;
-        mouseTooltip.classList.add('visible');
-    });
-    sub.addEventListener('mouseleave', () => mouseTooltip.classList.remove('visible'));
+        sub.addEventListener('mouseenter', () => {
+            mouseTooltip.textContent = sub.getAttribute('data-label') || "Section";
+            mouseTooltip.classList.add('visible');
+        });
+        sub.addEventListener('mouseleave', () => mouseTooltip.classList.remove('visible'));
 
-    sub.addEventListener('click', (e) => {
-        // Prevents the "Professional Identity" dot from re-triggering
-        e.stopPropagation();
+        sub.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const parentColumn = sub.closest('.piv-pill-column');
+            if (parentColumn) {
+                parentColumn.querySelectorAll('.piv-sub-dot').forEach(sd => sd.classList.remove('selected'));
+            }
+            sub.classList.add('selected');
 
-        // 1. Manage the black "pressed" state
-        const parentColumn = sub.closest('.piv-pill-column');
-        if (parentColumn) {
-            parentColumn.querySelectorAll('.piv-sub-dot').forEach(sd => sd.classList.remove('selected'));
-        }
-        sub.classList.add('selected');
-
-        // 2. Navigation: Explicitly grab the ID
-        const targetId = sub.getAttribute('data-target');
-        const targetScale = parseFloat(sub.getAttribute('data-scale')) || 0.6;
-        
-        console.log("Sub-dot clicked. Targeting:", targetId); // Debugging line
-
-        if (targetId) {
-            moveCameraTo(targetId, targetScale);
-        }
+            const targetId = sub.getAttribute('data-target');
+            const targetScale = parseFloat(sub.getAttribute('data-scale')) || 0.6;
+            
+            if (targetId) moveCameraTo(targetId, targetScale);
         });
     });
 }
