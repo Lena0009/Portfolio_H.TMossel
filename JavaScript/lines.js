@@ -254,3 +254,45 @@ export function updateReflectionLines() {
     
     svg.appendChild(line);
 }
+
+// 3. New Function: Connect Identity Cluster to Project Archive
+export function updateArchiveConnection() {
+    const svg = document.getElementById('lines-layer');
+    const canvas = document.getElementById('canvas');
+    const clusterBox = document.getElementById('identity-cluster-box');
+    const archiveHub = document.getElementById('project-archive-hub');
+
+    if (!svg || !canvas || !clusterBox || !archiveHub) {
+        console.warn("Archive Line Debug: Missing one of the elements.");
+        return;
+    }
+
+    // 1. Get the scroll/position of the canvas itself
+    const canvasRect = canvas.getBoundingClientRect();
+
+    // 2. Get the positions of the two boxes on the screen
+    const boxRect = clusterBox.getBoundingClientRect();
+    const hubRect = archiveHub.getBoundingClientRect();
+
+    // 3. Calculate points relative to the canvas (and account for scale)
+    // We want the BOTTOM CENTER of the Identity Box
+    const startX = ((boxRect.left + boxRect.right) / 2 - canvasRect.left) / state.scale;
+    const startY = (boxRect.bottom - canvasRect.top) / state.scale;
+
+    // We want the TOP CENTER of the Archive Hub
+    const endX = ((hubRect.left + hubRect.right) / 2 - canvasRect.left) / state.scale;
+    const endY = (hubRect.top - canvasRect.top) / state.scale;
+
+    // 4. Create the path
+    const pathData = `M ${startX} ${startY} L ${endX} ${endY}`;
+
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    line.setAttribute("d", pathData);
+    line.setAttribute("stroke", "#333");
+    line.setAttribute("stroke-width", "4"); // Match your other dashed lines
+    line.setAttribute("fill", "none");
+    line.setAttribute("stroke-dasharray", "10, 10");
+    line.setAttribute("stroke-linecap", "round");
+    
+    svg.appendChild(line);
+}

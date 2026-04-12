@@ -101,3 +101,269 @@
     border-radius: 40px;
     border: 1px solid #c8cdff;
 }
+
+
+/* --- PROJECT PREVIEW CARD (IN SLIDER) --- */
+
+.project-preview-card {
+    position: relative; /* Essential for absolute tags to work */
+    overflow: hidden;    /* This clips the tags inside the rounded corners */
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    background: white;
+    border-radius: 24px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee;
+    flex-shrink: 0; /* Prevents cards from squishing in the slider */
+    user-select: none; /* Prevents text highlighting while dragging */
+    -webkit-user-drag: none;
+    
+}
+
+.project-preview-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    border-color: #7b89f4; /* Subtle purple highlight on hover */
+}
+
+/* The Image inside the preview card */
+.preview-thumb-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    background: #f0f0f0;
+}
+
+.preview-thumb-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* This clips the image to fill the square */
+    object-position: center; /* Keeps the middle of your diagram visible */
+    display: block;
+}
+
+/* 2. Ensure the thumbnail container doesn't "jump" over the tags */
+.preview-thumb-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    background: #f0f0f0;
+    z-index: 1;   /* Lower than the tags */
+}
+
+/* Floating Tags inside the card */
+.preview-tags {
+    position: absolute;
+    top: 25px;    /* Increased slightly to clear the card padding */
+    right: 25px;  /* Increased slightly */
+    display: flex;
+    gap: 10px;
+    z-index: 10;  /* Higher than anything else in the card */
+    pointer-events: none; /* Allows clicks to go through tags to the card */
+}
+
+.preview-tags .tag {
+    font-size: 20px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #1a1a1a;
+}
+
+/* Typography for the Card */
+.preview-title {
+    font-size: var(--card-title-size);
+    font-weight: 800;
+    margin: 0;
+    color: #000;
+}
+
+.preview-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    line-height: 1.4;
+    /* Limit to 2 lines of text */
+    display: -webkit-box;
+    /*-webkit-line-clamp: 2;*/
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+
+
+
+/* Update the main Hub card */
+#project-archive-hub {
+    width: 3000px;
+    overflow: visible;
+    display: flex;
+    flex-direction: column; /* Stack header on top of slider */
+    align-items: center;    /* Center everything horizontally */
+    gap: 30px;
+    padding: 60px 40px;
+    background: white;
+    border-radius: 60px;
+}
+
+/* Header & Filter Rows */
+.archive-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: row; /* Horizontal pills */
+    justify-content: center;
+    gap: 15px;
+}
+
+/* The Competency Legend (Middle Row) */
+.competency-legend {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+
+/* THE WINDOW */
+.archive-slider {
+    width: 100%;
+    overflow: hidden; /* This locks manual scrolling */
+    padding: 40px 0;
+    cursor: default; /* Or 'grab' if you want people to drag the cards */
+    touch-action: pan-x;
+}
+
+/* THE BELT */
+#project-track {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 40px; /* This must match the 'gap' variable in JS */
+    transition: transform 0.6s cubic-bezier(0.2, 0, 0.2, 1); /* Professional slide feel */
+}
+
+/* THE DOTS */
+.archive-dots {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 20px;
+}
+
+.archive-dot {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.archive-dot.active {
+    background: #333;
+    transform: scale(1.3);
+}
+
+
+/* --- 3. THE PYRAMID FILTER SYSTEM --- */
+.archive-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px; /* The "Bigger Gap" between the pyramid rows */
+    width: 100%;
+}
+
+.filter-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.category-groups {
+    gap: 50px; /* Extra space between the two pairs (Past/Present vs TU/e/Extra) */
+}
+
+.filter-pair {
+    display: flex;
+    gap: 15px;
+}
+
+/* --- 4. BUTTON STYLING --- */
+.filter-btn {
+    background: white;
+    color: #1a1a1a;
+    border: 3px solid #1a1a1a; /* Thicker border for better visibility */
+    border-radius: 100px;      /* Perfect pill shape */
+    padding: 14px 45px;        /* Significantly larger padding */
+    font-size: 30px;           /* Larger text for readability */
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    letter-spacing: 0.02em;    /* Clearer character spacing */
+}
+
+/* Top Rows (All, Past, etc.) Active State */
+.filter-row:not(.competency-legend) .filter-btn.active {
+    background: #1a1a1a;
+    color: white;
+}
+
+/* Bottom Row (Expertise) Base Style */
+.competency-legend .filter-btn {
+    border: none;
+    padding: 16px 55px;        /* Even larger for the bottom row */
+    font-size: 30px;           /* Balanced for the tags */
+    opacity: 0.4;
+}
+
+.competency-legend .filter-btn.active {
+    opacity: 1;
+    outline: 3px solid #1a1a1a;
+    transform: scale(1.05);
+}
+
+.filter-btn:hover {
+    transform: scale(1.05);
+}
+
+.filter-btn.active {
+    transform: scale(1.08);    /* Slightly larger when selected */
+}
+
+/* Expertise Colors */
+.filter-btn[data-filter="US"] { background-color: #92d979; }
+.filter-btn[data-filter="TR"] { background-color: #f1e27a; }
+.filter-btn[data-filter="CA"] { background-color: #e9a261; }
+.filter-btn[data-filter="MDC"] { background-color: #d7aaf5; }
+.filter-btn[data-filter="BE"] { background-color: #97bef8; }
+
+
+
+/* The 'active' state for the project card */
+.project-preview-card.is-active {
+    border: 5px solid #9D9BFE; /* Dark underline */
+    transform: translateY(-5px); /* Lift it up slightly */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}

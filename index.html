@@ -88,6 +88,7 @@
 
             <div class="section-box" id="identity-cluster-box">
                 <div class="node node-top"></div>
+                <div class="node node-bottom"></div>
                     
 
                 <div class="mindmap-card PI-card" id="PI-card" style="pointer-events: auto;">
@@ -206,7 +207,44 @@
                     </div>
                 </div>
 
+                <div id="project-archive-hub" class="mindmap-card large-archive-card" style="position: absolute; top: 1500px; left: 4140px;">
+                    
+                    <div class="node node-top" id="node-archive-top"></div>
+                    
+                    <div class="archive-header">
+                            <div class="filter-row">
+                                <button class="filter-btn active" data-filter="all">All</button>
+                            </div>
 
+                            <div class="filter-row category-groups">
+                                <div class="filter-pair">
+                                    <button class="filter-btn" data-filter="past">Past</button>
+                                    <button class="filter-btn" data-filter="present">Present</button>
+                                </div>
+                                <div class="filter-pair">
+                                    <button class="filter-btn" data-filter="tue">TU/e</button>
+                                    <button class="filter-btn" data-filter="extracurricular">Extra</button>
+                                </div>
+                            </div>
+
+                            <div class="filter-row competency-legend">
+                                <button class="filter-btn" data-filter="US">U&S</button>
+                                <button class="filter-btn" data-filter="TR">T&R</button>
+                                <button class="filter-btn" data-filter="CA">C&A</button>
+                                <button class="filter-btn" data-filter="MDC">M,D&C</button>
+                                <button class="filter-btn" data-filter="BE">B&E</button>
+                            </div>
+                        </div>
+
+                        <div class="archive-slider">
+                            <div id="project-track" class="project-track">
+                                </div>
+                        </div>
+                        
+                        <div id="archive-dots" class="archive-dots">
+                            </div>
+                    
+                </div>
 
 
 
@@ -270,7 +308,7 @@
             <div id="section-archive" style="position: absolute; top: 2100px; left: 3800px;">
             </div>
 
-        </div> <div class="ui-layer">
+        </div> </div> <div class="ui-layer">
             <div class="top-bar">
                 <div class="left-group">
                     <div class="floating-card logo-card" >
@@ -313,7 +351,7 @@
                         
                         <div class="piv-dot purple-anchor" data-target="identity-cluster-box" data-label="Professional Identity" data-scale="0.29"></div>
                         
-                        <div class="piv-sub-dot bottom-dot" data-target="placeholder" data-label="Projects Archive"></div>
+                        <div class="piv-sub-dot bottom-dot" data-target="project-archive-hub" data-label="Projects Archive" data-scale="0.29"></div>
                     </div>
 
                     
@@ -326,6 +364,21 @@
 
         </div>
     </div>
+
+<div id="project-sidebar" class="project-sidebar">
+    <div id="sidebar-resizer" class="resizer"></div>
+    
+    <div class="sidebar-nav">
+        <button onclick="closeSidebar()" class="nav-btn close-btn">✕ Close</button>
+        <div class="nav-right">
+            <button id="prev-project" class="nav-btn">←</button>
+            <button id="next-project" class="nav-btn">→</button>
+        </div>
+    </div>
+
+    <div id="sidebar-content" class="sidebar-body">
+        </div>
+</div>
 
     <script type="module" src="JavaScript/main.js"></script>
 </body>
