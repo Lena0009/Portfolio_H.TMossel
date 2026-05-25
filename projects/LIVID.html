@@ -3,58 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://www.youtube.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; script-src 'self' 'unsafe-inline' https://www.youtube.com;">
     <title>LIVID</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/projects.css">
 </head>
 <body id="portfolio-project-template">
 
-    <div class="project-page-container js-project-root" data-category="present tue">
+    <div class="project-page-container js-project-root" data-category="past tue">
+
+        <img src="Project_Images\LIVID\Thumbnail.jpg" class="js-project-thumbnail" style="display: none;">
+        <p class="js-project-card-description" style="display: none;">
+                LIVID is a Human Digital Twin application designed to help users balance work, life, and exercise by providing personalised recommendations for physical activity. It uses data such as schedules, self-reported energy levels, and weather conditions to calculate a readiness score (how prepared the user is to exercise) and a benefit score (how beneficial exercising would be at that moment).
+        </p>
         
         <div class="project-media-source hero-media">
-            <img src="Images/place_holder.png" alt="LIVID Hero" class="js-project-thumbnail">
-            <span class="placeholder-x"></span>
+            <img src="Project_Images\LIVID\header.png" alt="Project Header">
         </div>
 
-        <div class="project-intro-grid">
+        <div class="project-content-area">
             <div class="intro-text">
-                <h1 class="piv-title js-project-title">LIVID</h1>
+                <h1 class="piv-title js-project-title">LIVID</Template></h1>
                 
                 <div class="tag-row js-project-tags">
-                    <span class="tag" data-competence="US">U&S</span>
+                    <span class="tag" data-competence="CA">C&A</span>
                     <span class="tag" data-competence="TR">T&R</span>
                     <span class="tag" data-competence="MDC">M,D&C</span>
-                    <span class="tag" data-competence="BE">B&E</span>
                 </div>
 
-                <p class="description js-project-subtitle">
-                    LIVID is a Human Digital Twin (HDT) application designed to help users optimize their well-being...
-                </p>
+                <p class="description">
+
+                    LIVID is a Human Digital Twin application designed to help users balance work, life, and exercise by providing personalised recommendations for physical activity. It uses data such as schedules, self-reported energy levels, and weather conditions to calculate a readiness score (how prepared the user is to exercise) and a benefit score (how beneficial exercising would be at that moment).
+
+                    </p>
+
+                <p class="description">
+
+                    The system combines these scores to suggest optimal times for running or exercise, supporting better well-being and planning. The current prototype simulates this process using adjustable inputs and visualised outputs to demonstrate the concept. A future version would integrate AI and additional data sources, such as biometrics and sleep patterns, to continuously refine recommendations and act as a personal well-being coach.
+
+                    </p>
+
+
+
+
             </div>
 
             <div class="piv-info-box">
                 <h3>Project Information:</h3>
                 <ul>
-                    <li><strong>Institution:</strong> TUe</li>
-                    <li><strong>Course:</strong> Designing with and for Digital Twin</li>
-                    <li><strong>Year:</strong> 2024</li>
-                    <li><strong>Team:</strong> Jesse Strijker, Zhaopeng Zhu, Helena Mossel</li>
+                    <li><strong>Institution:</strong> Eindhoven University of Technology (TU/e)</li>
+                    <li><strong>Course:</strong> Designing with and for digital twins: A data-driven perspective (DBM190)</li>
+                    <li><strong>Year:</strong> 2025</li>
+                    <li><strong>Team:</strong> Senna van den Bogaard, Danisha Fonseca, Helena Mossel </li>
                 </ul>
             </div>
         </div>
 
-        <div class="project-media-source video-media">
-            <img src="Images/place_holder.png" alt="Video">
-            <span class="placeholder-x">X</span>
+        <!--When you Upload your website to Blue Host you got to change the "origin=http://127.0.0.1:5500" with "origin=https://yourdomain.com"-->
+        <div class="project-media-source hero-media video-container">
+            <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube-nocookie.com/embed/PuBIlntYRPk?origin=http://127.0.0.1:5500"
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
         </div>
 
-        <div class="reflection-box">
+        <div class="project-content-area">
+        <div class="reflection-box ">
             <h2>What did I learn...</h2>
-            <p>Your reflection text goes here...</p>
+           <p>At the start of this course, I set four learning goals: analyzing and visualizing datasets, learning basic Python for data analysis, improving data visualization skills, and switching between System Thinking and Design Thinking.</p>
+           <p>I developed my data analysis skills through assignments and the group project, gaining confidence working with datasets and learning statistical analysis methods. I also used Python throughout the project, building a partially working prototype with support from peers and ChatGPT, which improved my foundational coding skills and taught me to work more iteratively. In data visualization, I learned it is an iterative and nuanced process, though I still need more practice. My fourth goal was fully achieved, as I became more comfortable shifting between System and Design Thinking and discovered a strong interest in System Thinking.</p>
+           <p>I also learned about synthetic data and its role in experimentation and gained deeper insight into Digital Twins. Overall, the course strengthened my technical and analytical skills and helped me grow more confident working with data-driven design processes.</p>
         </div>
+        </div>
+
+    
+    <div class="project-content-area">
+        <div class="gallery-wrapper">
+            
+            <div class="project-mosaic-organized">
+                
+                <!--Image 1-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\LIVID\Concept_Flow.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Full User-Flow</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+
+                <!--Image 2-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Project_Images\LIVID\Step-1.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Step 1</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+
+                 <!--Image 3-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Project_Images\LIVID\Step 2.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Step 2</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                <!--Image 4-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\LIVID\Step-3.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Step 3</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                 <!--Image 5-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\LIVID\image 3.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Prototype Calendar Logic</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                <!--Image 6-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Project_Images\LIVID\Group 27.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Concept Dashboard</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+
+        <div id="visual-modal" class="visual-modal">
+            <div class="modal-overlay" onclick="closeVisualModal()"></div>
+            
+            <button class="modal-close" onclick="closeVisualModal()">✕</button>
+            
+            <div class="modal-card">
+                <img id="modal-image" src="" alt="Maximized Photo">
+                <div class="visual-pill modal-caption">Title Photo</div>
+            </div>
+        </div>
+    </div>
+    
 
     </div>
 
+    <script type="module" src="JavaScript/gallery.js"></script>
+
 </body>
 </html>
-

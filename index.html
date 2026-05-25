@@ -120,7 +120,7 @@
                         </header>
 
                         <section class="card-body">
-                            <p> My process starts with exploration and discovery. I use both empathetic and analytical attitudes to gain a deeper understanding of the context, target group and all stakeholders involve to form a holistic view. I use theory (UX, Interaction, and Behavioural Change), and diverse evaluation methods (see activity <span class="project-citation" data-project="LIVID.html">LIVID</span>) like interviews, observations, and repertory grids. My core aim here, is to get gain new knowledge and insights through literature research and data analysis. Throughout this stage and the entire process, I adopt an entrepreneurial mindset to better understand stakeholders and practice value-based leadership. I have developed a strong leadership attitude that goes hand in hand with my communication skills for leading presentations, co-creation sessions, and user tests. I take a proactive attitude in projects and push myself to find way to implement concepts into meaningful systems, requiring me to apply system thinking.</p>
+                            <p> My process starts with exploration and discovery. I use both empathetic and analytical attitudes to gain a deeper understanding of the context, target group and all stakeholders involve to form a holistic view. I use theory (UX, Interaction, and Behavioural Change), and diverse evaluation methods (see activity <span class="project-citation" data-project="seavilization.html">1</span>) like interviews, observations, and repertory grids. My core aim here, is to get gain new knowledge and insights through literature research and data analysis. Throughout this stage and the entire process, I adopt an entrepreneurial mindset to better understand stakeholders and practice value-based leadership. I have developed a strong leadership attitude that goes hand in hand with my communication skills for leading presentations, co-creation sessions, and user tests. I take a proactive attitude in projects and push myself to find way to implement concepts into meaningful systems, requiring me to apply system thinking.</p>
                             <p> With these skills and my process, this early research informs the ideation and development of concepts and prototypes. I adopt an out-of-the-box mindset and a hands-on attitude to actively engage in these ideation sessions and make quick and dirty prototypes that can be tested (Figure 6, 7, 10). My background as a Design Academy Eindhoven Alumni has given me a strong eye for detail, form and aesthetics. The later part of this stage focuses on visualization and prototyping a demonstrator (Figure 5, 8, 9, 11). I use my technical skills (3D modelling, sketching, Figma, and workshop tools like 3D printers and laser cutters) together with my communicative, adaptable mindset to convey my intentions to peers and professionals. I keep learning how to seamlessly integrate technology and choose the best materials and methods to bring ideas to life. </p>
                             <p> The use of data is central to my work (Figure 5), informing and guiding decisions across all design phases. I am developing an analytical attitude that applies both qualitative (which is my current strength) and quantitative analysis. I use programming and visualization skills to understand underlying messages in data and design outcomes that embed and use data-driven technologies like AI and Digital Twins (Figure 5, 6, 10), to create context aware and personalized solutions. </p>
                             
@@ -207,7 +207,7 @@
                     </div>
                 </div>
 
-                <div id="project-archive-hub" class="mindmap-card large-archive-card" style="position: absolute; top: 1000px; left: 2544px;">
+                <div id="project-archive-hub" class="mindmap-card large-archive-card" style="position: absolute; top: 1000px; left: 2444px;">
                     
                     <div class="node node-top" id="node-archive-top"></div>
                     
@@ -218,11 +218,11 @@
 
                             <div class="filter-row category-groups">
                                 <div class="filter-pair">
-                                    <button class="filter-btn" data-filter="past">Past</button>
-                                    <button class="filter-btn" data-filter="present">Present</button>
+                                    <button class="filter-btn" data-filter="Before Master">Before Master</button>
+                                    <button class="filter-btn" data-filter="Master">Master</button>
                                 </div>
                                 <div class="filter-pair">
-                                    <button class="filter-btn" data-filter="tue">TU/e</button>
+                                    <button class="filter-btn" data-filter="Curricular">Curricular</button>
                                     <button class="filter-btn" data-filter="extracurricular">Extra</button>
                                 </div>
                             </div>
@@ -236,13 +236,20 @@
                             </div>
                         </div>
 
-                        <div class="archive-slider">
-                            <div id="project-track" class="project-track">
-                                </div>
-                        </div>
-                        
-                        <div id="archive-dots" class="archive-dots">
+                        <div class="archive-slider"> 
+                            <div id="project-track" class="project-track"></div>
+
+                            <div class="hub-nav-arrows">
+                                <button class="hub-arrow-btn" onclick="moveArchiveSlider(-1)">
+                                    <img src="Images\arrow-left.svg" alt="Prev">
+                                </button>
+                                <button class="hub-arrow-btn" onclick="moveArchiveSlider(1)">
+                                    <img src="Images\arrow-right.svg" alt="Next">
+                                </button>
                             </div>
+                        </div>
+
+                        <div id="archive-dots" style="display:none;"></div>
                     
                 </div>
 
@@ -347,7 +354,7 @@
                         
                         <div class="piv-dot purple-anchor" data-target="identity-cluster-box" data-label="Professional Identity" data-scale="0.7"></div>
                         
-                        <div class="piv-sub-dot bottom-dot" data-target="project-archive-hub" data-label="Projects Archive" data-scale="0.5"></div>
+                        <div class="piv-sub-dot bottom-dot" data-target="project-archive-hub" data-label="Activities Archive" data-scale="0.5"></div>
                     </div>
 
                     
@@ -365,15 +372,37 @@
     <div id="sidebar-resizer" class="resizer"></div>
     
     <div class="sidebar-nav">
-        <button onclick="closeSidebar()" class="nav-btn close-btn">✕ Close</button>
-        <div class="nav-right">
-            <button id="prev-project" class="nav-btn">←</button>
-            <button id="next-project" class="nav-btn">→</button>
-        </div>
+        <div class="nav-circle-wrapper">
+                <button id="prev-project" class="circle-btn">
+                    <img src="Images/arrow-left.svg" alt="Prev">
+                </button>
+            </div>
+
+            <div class="nav-circle-wrapper">
+                <button onclick="closeSidebar()" class="circle-btn close-btn">
+                    <img src="Images/close-icon.svg" alt="Close">
+                </button>
+            </div>
+
+            <div class="nav-circle-wrapper">
+                <button id="next-project" class="circle-btn">
+                    <img src="Images/arrow-right.svg" alt="Next">
+                </button>
+            </div>
     </div>
 
     <div id="sidebar-content" class="sidebar-body">
         </div>
+
+    
+    <div id="visual-modal" class="visual-modal">
+        <div class="modal-overlay" onclick="closeVisualModal()"></div>
+        <div class="modal-card">
+
+            <img id="modal-image" src="">
+        </div>
+        <button class="modal-close" onclick="closeVisualModal()">✕</button>
+    </div>
 </div>
 
     <script type="module" src="JavaScript/main.js"></script>

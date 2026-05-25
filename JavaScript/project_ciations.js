@@ -4,10 +4,15 @@ export function initProjectCitations() {
     const preview = document.createElement('div');
     preview.id = 'project-hover-preview';
     preview.innerHTML = `
-        <img class="hover-preview-image" src="" alt="">
-        <div class="hover-preview-content">
-            <div class="hover-preview-title"></div>
-            <div class="js-project-tags"></div>
+        <div class="hover-row-layout">
+            <div class="hover-preview-image-container">
+                <img class="hover-preview-image" src="" alt="">
+            </div>
+            <div class="hover-preview-content">
+                <div class="hover-preview-title"></div>
+                <div class="js-project-tags"></div>
+                <div class="hover-preview-description"></div> 
+            </div>
         </div>
     `;
     document.body.appendChild(preview);
@@ -28,11 +33,13 @@ export function initProjectCitations() {
                 const title = doc.querySelector('.js-project-title')?.innerText || "Untitled";
                 const thumb = doc.querySelector('.js-project-thumbnail')?.src || "";
                 const tags = doc.querySelector('.js-project-tags')?.innerHTML || "";
+                const description = doc.querySelector('.js-project-card-description')?.innerText || "";
 
                 // Inject into preview
                 preview.querySelector('.hover-preview-title').innerText = title;
                 preview.querySelector('.hover-preview-image').src = thumb;
                 preview.querySelector('.js-project-tags').innerHTML = tags;
+                preview.querySelector('.hover-preview-description').innerText = description;
 
                 preview.classList.add('visible');
             } catch (err) {
@@ -41,9 +48,27 @@ export function initProjectCitations() {
         });
 
         cite.addEventListener('mousemove', (e) => {
-            // Position the preview 20px away from the mouse
-            preview.style.left = `${e.clientX + 20}px`;
-            preview.style.top = `${e.clientY + 20}px`;
+            const margin = 20;
+            const pWidth = preview.offsetWidth;
+            const pHeight = preview.offsetHeight;
+            
+            // Check right edge
+            let x = e.clientX + margin;
+            if (x + pWidth > window.innerWidth) {
+                x = e.clientX - pWidth - margin;
+            }
+
+            // Check bottom edge
+            let y = e.clientY + margin;
+            if (y + pHeight > window.innerHeight) {
+                y = e.clientY - pHeight - margin;
+            }
+            
+            // Check top edge (if it flips up and hits the top)
+            if (y < 0) y = margin;
+
+            preview.style.left = `${x}px`;
+            preview.style.top = `${y}px`;
         });
 
         cite.addEventListener('mouseleave', () => {

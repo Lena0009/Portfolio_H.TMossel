@@ -3,58 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://www.youtube.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; script-src 'self' 'unsafe-inline' https://www.youtube.com;">
     <title>Paper Screen</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/projects.css">
 </head>
 <body id="portfolio-project-template">
 
-    <div class="project-page-container js-project-root" data-category="present tue">
+    <div class="project-page-container js-project-root" data-category="past tue">
+
+        <img src="Project_Images\Paper_Screen\Thumbnail.jpg" class="js-project-thumbnail" style="display: none;">
+        <p class="js-project-card-description" style="display: none;">
+
+            Paper Screen explores a sustainable, paper-based alternative to LCD screens by using light and tangible interaction instead of traditional displays. The project investigates how embedded ArUco markers and light-tracking via wearable light sources can transform paper into an interactive surface for controlling digital content.
+
+        </p>
         
         <div class="project-media-source hero-media">
-            <img src="Images/place_holder.png" alt="LIVID Hero" class="js-project-thumbnail">
-            <span class="placeholder-x"></span>
+            <img src="Project_Images\Paper_Screen\WhatsApp Image 2025-01-16 at 20.41.42_dd246f1e 3.png" alt="Project Header">
         </div>
 
-        <div class="project-intro-grid">
+        <div class="project-content-area">
             <div class="intro-text">
-                <h1 class="piv-title js-project-title">Paper Screen</h1>
+                <h1 class="piv-title js-project-title">Paper Screen</Template></h1>
                 
                 <div class="tag-row js-project-tags">
                     <span class="tag" data-competence="US">U&S</span>
+                    <span class="tag" data-competence="CA">C&A</span>
                     <span class="tag" data-competence="TR">T&R</span>
                     <span class="tag" data-competence="MDC">M,D&C</span>
-                    
                 </div>
 
-                <p class="description js-project-subtitle">
-                    LIVID is a Human Digital Twin (HDT) application designed to help users optimize their well-being...
+                <p class="description">
+                Paper Screen explores a sustainable, paper-based alternative to LCD screens by using light and tangible interaction instead of traditional displays. The project investigates how embedded ArUco markers and light-tracking via wearable light sources can transform paper into an interactive surface for controlling digital content.
                 </p>
+
+                <p class="description"> 
+                Users interact by shining light onto layered paper, with a camera system translating illuminated areas into cursor-based actions such as moving, rotating, and scaling objects. User testing showed the concept to be engaging and playful, with potential for educational applications, but also revealed significant usability limitations, including low precision, environmental sensitivity, and higher cognitive load compared to a standard tablet interface.
+                </p>
+
             </div>
 
             <div class="piv-info-box">
                 <h3>Project Information:</h3>
                 <ul>
-                    <li><strong>Institution:</strong> TUe</li>
-                    <li><strong>Course:</strong> Designing with and for Digital Twin</li>
+                    <li><strong>Institution:</strong> Eindhoven University of Technology (TU/e)</li>
+                    <li><strong>Course:</strong> Designing user interfaces with emerging technologies (DBM170)</li>
                     <li><strong>Year:</strong> 2024</li>
-                    <li><strong>Team:</strong> Jesse Strijker, Zhaopeng Zhu, Helena Mossel</li>
+                    <li><strong>Team:</strong> Alexandra van Dijk, Guyon Crousen, Joey del Castilho, Yufei Song, Helena Mossel</li>
                 </ul>
             </div>
         </div>
 
-        <div class="project-media-source video-media">
-            <img src="Images/place_holder.png" alt="Video">
-            <span class="placeholder-x">X</span>
+        <!--When you Upload your website to Blue Host you got to change the "origin=http://127.0.0.1:5500" with "origin=https://yourdomain.com"-->
+        <div class="project-media-source hero-media video-container">
+            <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube-nocookie.com/embed/Yeg4Ry9r8UI?origin=http://127.0.0.1:5500" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
         </div>
 
-        <div class="reflection-box">
+        <div class="project-content-area">
+        <div class="reflection-box ">
             <h2>What did I learn...</h2>
-            <p>Your reflection text goes here...</p>
+            <p>This DUIET group project focused on developing my ability to work more experimentally through the Paper Screen concept, driven by curiosity about how light interacts with paper. It showed me the value of curiosity-led exploration in generating unexpected ideas, while also teaching me the importance of balancing experimentation with clear direction to ensure meaningful outcomes.</p>
+        </div>
         </div>
 
+    
+    <div class="project-content-area">
+        <div class="gallery-wrapper">
+            
+            <div class="project-mosaic-organized">
+
+                <!--Image 5-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Paper_Screen\Gestures_Interaction@300x 1.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Interaction Gestures</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+                
+                <!--Image 1-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Paper_Screen\WhatsApp Image 2025-01-19 at 12.14.06_700f0fe3 1.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Light Components</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+
+                <!--Image 2-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Paper_Screen\WhatsApp Image 2025-11-04 at 17.10.14_81400141 1.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Prototyping Process</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+
+                 <!--Image 3-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Paper_Screen\WhatsApp Image 2025-11-04 at 17.10.14_dd00aaaa 1.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Prototyping Process</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                <!--Image 4-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Paper_Screen\WhatsApp Image 2025-01-16 at 20.41.47_8da1ee92 1.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">User Evaluation</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                 <!--Image 5-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Paper_Screen\WhatsApp Image 2025-01-16 at 20.41.42_dd246f1e 2.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">User Evaluation</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+            <div class="video-row-full">
+                    <div class="visual-inner">
+                        <iframe 
+                            src="https://www.youtube-nocookie.com/embed/Mx-le66HXT0?origin=http://127.0.0.1:5500"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;">
+                        </iframe>
+                        
+                        <div class="visual-pill">Prototyping Process</div>
+
+                    </div>
+                </div>
+
+
+                <div class="video-row-full">
+                    <div class="visual-inner">
+                        <iframe 
+                            src="https://www.youtube-nocookie.com/embed/TBkUocl9FFw?origin=http://127.0.0.1:5500"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;">
+                        </iframe>
+                        
+                        <div class="visual-pill">Prototyping Process</div>
+
+                    </div>
+                </div>
+
+
+                <div class="video-row-full">
+                    <div class="visual-inner">
+                        <iframe 
+                            src="https://www.youtube-nocookie.com/embed/Euy8CqhIz1c?origin=http://127.0.0.1:5500"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;">
+                        </iframe>
+                        
+                        <div class="visual-pill">Prototyping Process</div>
+
+                    </div>
+                </div>
+
+
+
+
+
+
+        </div>
+
+        <div id="visual-modal" class="visual-modal">
+            <div class="modal-overlay" onclick="closeVisualModal()"></div>
+            
+            <button class="modal-close" onclick="closeVisualModal()">✕</button>
+            
+            <div class="modal-card">
+                <img id="modal-image" src="" alt="Maximized Photo">
+                <div class="visual-pill modal-caption">Title Photo</div>
+            </div>
+        </div>
     </div>
+    
+    </div>
+
+    <script type="module" src="JavaScript/gallery.js"></script>
 
 </body>
 </html>
+
+
 

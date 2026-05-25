@@ -11,3 +11,57 @@
 @import url('project_window.css');
 @import url('floating_preview.css');
 @import url('citation_highlights.css');
+@import url('gallery_photos.css');
+
+
+
+
+/* style.css */
+
+@media print {
+    /* Force visibility on everything */
+    * {
+        position: static !important;
+        overflow: visible !important;
+        float: none !important;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important; /* This kills the camera offset */
+    }
+
+    /* Hide the UI elements we definitely don't want */
+    .piv-nav-container, 
+    #project-sidebar, 
+    .archive-slider-controls,
+    .filter-container,
+    #piv-mouse-tooltip,
+    canvas:not(#canvas) { 
+        display: none !important; 
+    }
+
+    /* Reset the main containers */
+    body, html, #viewport, #canvas {
+        width: 100% !important;
+        height: auto !important;
+        background: white !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Style the cards as individual blocks */
+    .mindmap-card, .section-box, .card-group {
+        border: 1px solid #ccc !important;
+        margin-bottom: 30px !important;
+        padding: 20px !important;
+        page-break-inside: avoid !important; /* Stops a card from splitting mid-sentence */
+        width: 95% !important;
+        display: block !important;
+    }
+
+    /* Keep images and thumbnails visible */
+    img {
+        max-width: 100% !important;
+        display: block !important;
+    }
+}

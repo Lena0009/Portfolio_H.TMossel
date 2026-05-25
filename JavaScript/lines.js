@@ -3,32 +3,31 @@ import { state } from './config.js';
 
 let isUpdatingLines = false;
 
+// 1. HELPER: Calculate absolute world coordinates (Extracted so all functions can use it)
+export const getPos = (el) => {
+    let left = 0;
+    let top = 0;
+    let current = el;
+
+    // Climb up the tree until we hit the canvas
+    while (current && current.id !== 'canvas') {
+        left += current.offsetLeft || 0;
+        top += current.offsetTop || 0;
+        current = current.offsetParent;
+    }
+
+    return {
+        left: left,
+        top: top,
+        width: el.offsetWidth,
+        height: el.offsetHeight
+    };
+};
+
 export function updateLines() {
     const svg = document.getElementById('lines-layer');
     if (!svg) return;
     svg.innerHTML = ''; // Clear existing paths
-
-    // 1. HELPER: Calculate absolute world coordinates
-    const getPos = (el) => {
-        let left = 0;
-        let top = 0;
-        let current = el;
-
-        // Climb up the tree until we hit the canvas
-        // This captures world region (9000), box (3400), and group (8500) automatically
-        while (current && current.id !== 'canvas') {
-            left += current.offsetLeft || 0;
-            top += current.offsetTop || 0;
-            current = current.offsetParent;
-        }
-
-        return {
-            left: left,
-            top: top,
-            width: el.offsetWidth,
-            height: el.offsetHeight
-        };
-    };
 
     // 2. THE SEQUENCE: Defines the exact path the line takes
     const sequence = [
@@ -125,65 +124,6 @@ export function updateLines() {
         newPath.setAttribute("stroke-linecap", "round");
         svg.appendChild(newPath);
     }
-
-
-    // --- INTEGRATED ARCHIVE CONNECTION ---
-    const canvas = document.getElementById('canvas');
-    const clusterBox = document.getElementById('identity-cluster-box');
-    const archiveHub = document.getElementById('project-archive-hub');
-    
-    if (canvas && clusterBox && archiveHub) {
-        const canvasRect = canvas.getBoundingClientRect();
-        const boxRect = clusterBox.getBoundingClientRect();
-        const hubRect = archiveHub.getBoundingClientRect();
-
-        // Calculate points (Your logic)
-        const startX = ((boxRect.left + boxRect.right) / 2 - canvasRect.left) / state.scale;
-        const startY = (boxRect.bottom - canvasRect.top) / state.scale;
-
-        const endX = ((hubRect.left + hubRect.right) / 2 - canvasRect.left) / state.scale;
-        const endY = (hubRect.top - canvasRect.top) / state.scale;
-
-        const line = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        line.setAttribute("d", `M ${startX} ${startY} L ${endX} ${endY}`);
-        line.setAttribute("stroke", "#333");
-        line.setAttribute("stroke-width", "4");
-        line.setAttribute("fill", "none");
-        line.setAttribute("stroke-dasharray", "10, 10");
-        line.setAttribute("stroke-linecap", "round");
-        svg.appendChild(line);
-    }
-
-
-
-// --- PART 2: SEPARATE REFLECTION BRANCH ---
-    // This connects the DASHED BOX itself to the REFLECTION HUB
-    const reflectionGroup = document.getElementById('reflection-group');
-
-    if (clusterBox && reflectionGroup) {
-        // We use getBoundingClientRect to get absolute screen positions
-        const canvasRect = document.getElementById('canvas').getBoundingClientRect();
-        const boxRect = clusterBox.getBoundingClientRect();
-        const reflectRect = reflectionGroup.getBoundingClientRect();
-
-        // 1. Calculate the TOP-CENTER of the identity box relative to the canvas
-        // We divide by state.scale to get "world" coordinates
-        const startX = ((boxRect.left + boxRect.right) / 2 - canvasRect.left) / state.scale;
-        const startY = (boxRect.top - canvasRect.top) / state.scale;
-
-        // 2. Calculate the BOTTOM-CENTER of the reflection group relative to the canvas
-        const endX = ((reflectRect.left + reflectRect.right) / 2 - canvasRect.left) / state.scale;
-        const endY = (reflectRect.bottom - canvasRect.top) / state.scale;
-
-        const branchPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        branchPath.setAttribute("d", `M ${startX} ${startY} L ${endX} ${endY}`);
-        branchPath.setAttribute("stroke", "#333");
-        branchPath.setAttribute("stroke-width", "4");
-        branchPath.setAttribute("fill", "none");
-        branchPath.setAttribute("stroke-dasharray", "10, 10");
-        svg.appendChild(branchPath);
-    }
-
 }
 
 // Inside your updateLines function in lines.js
@@ -248,32 +188,23 @@ function getVerticalPath(rectA, rectB) {
 // 2. New Function: Handle the specific Vertical Branch
 export function updateReflectionLines() {
     const svg = document.getElementById('lines-layer');
-    const sectionPIV = document.getElementById('PI-cards');
-    const sectionReflection = document.getElementById('reflection-group');
+    const clusterBox = document.getElementById('identity-cluster-box');
+    const reflectionGroup = document.getElementById('reflection-group');
     
-    if (!sectionPIV || !sectionReflection) return;
+    if (!svg || !clusterBox || !reflectionGroup) return;
 
-    // Helper to get the absolute center-top or center-bottom of a CONTAINER
-    const getBoxEdge = (el, edge) => {
-        const left = parseFloat(el.style.left) || 0;
-        const top = parseFloat(el.style.top) || 0;
-        const width = el.offsetWidth;
-        const height = el.offsetHeight;
+    const posBox = getPos(clusterBox);
+    const posRef = getPos(reflectionGroup);
 
-        return {
-            x: left + (width / 2),
-            y: edge === 'top' ? top : top + height
-        };
-    };
+    // Connection points: Top of identity box to Bottom of reflection group
+    const startX = posBox.left + (posBox.width / 2);
+    const startY = posBox.top;
 
-    // Connection points: Bottom of Reflection box to Top of PIV box
-    const start = getBoxEdge(sectionReflection, 'bottom');
-    const end = getBoxEdge(sectionPIV, 'top');
+    const endX = posRef.left + (posRef.width / 2);
+    const endY = posRef.top + posRef.height;
 
-    // Draw a straight vertical line between the boxes
-    const pathData = `M ${start.x} ${start.y} L ${end.x} ${end.y}`;
+    const pathData = `M ${startX} ${startY} L ${endX} ${endY}`;
 
-    // Create the path
     const line = document.createElementNS("http://www.w3.org/2000/svg", "path");
     line.setAttribute("d", pathData);
     line.setAttribute("stroke", "#333");
@@ -287,32 +218,23 @@ export function updateReflectionLines() {
 // 3. New Function: Connect Identity Cluster to Project Archive
 export function updateArchiveConnection() {
     const svg = document.getElementById('lines-layer');
-    const canvas = document.getElementById('canvas');
     const clusterBox = document.getElementById('identity-cluster-box');
     const archiveHub = document.getElementById('project-archive-hub');
 
-    if (!svg || !canvas || !clusterBox || !archiveHub) {
-        console.warn("Archive Line Debug: Missing one of the elements.");
+    if (!svg || !clusterBox || !archiveHub) {
         return;
     }
 
-    // 1. Get the scroll/position of the canvas itself
-    const canvasRect = canvas.getBoundingClientRect();
+    const posBox = getPos(clusterBox);
+    const posHub = getPos(archiveHub);
 
-    // 2. Get the positions of the two boxes on the screen
-    const boxRect = clusterBox.getBoundingClientRect();
-    const hubRect = archiveHub.getBoundingClientRect();
+    // Connection points: Bottom of identity box to Top of archive hub
+    const startX = posBox.left + (posBox.width / 2);
+    const startY = posBox.top + posBox.height;
 
-    // 3. Calculate points relative to the canvas (and account for scale)
-    // We want the BOTTOM CENTER of the Identity Box
-    const startX = ((boxRect.left + boxRect.right) / 2 - canvasRect.left) / state.scale;
-    const startY = (boxRect.bottom - canvasRect.top) / state.scale;
+    const endX = posHub.left + (posHub.width / 2);
+    const endY = posHub.top;
 
-    // We want the TOP CENTER of the Archive Hub
-    const endX = ((hubRect.left + hubRect.right) / 2 - canvasRect.left) / state.scale;
-    const endY = (hubRect.top - canvasRect.top) / state.scale;
-
-    // 4. Create the path
     const pathData = `M ${startX} ${startY} L ${endX} ${endY}`;
 
     const line = document.createElementNS("http://www.w3.org/2000/svg", "path");

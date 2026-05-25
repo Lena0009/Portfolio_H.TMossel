@@ -1,9 +1,8 @@
 // JavaScript/main.js
 console.log("Main.js has started!");
 
-import { initPivNav } from './camera.js';
+import { initPivNav, initCamera, navigateTo, updateActiveNavDot } from './camera.js'; // Added navigateTo
 import { initSubCards } from './content.js';
-import { initCamera } from './camera.js';
 import { updateLines, updateReflectionLines, updateArchiveConnection } from './lines.js';
 import { initExpertiseAreas } from './content.js';
 import { initProjectScanner } from './project_scanner.js';
@@ -12,7 +11,63 @@ import {initProjectCitations} from './project_ciations.js';
 
 window.navigateTo = navigateTo;
 
+window.openVisualModal = (buttonElement) => {
+    const modal = document.getElementById('visual-modal');
+    const modalImg = document.getElementById('modal-image');
+    
+    // Find the image inside the clicked tile
+    const visualInner = buttonElement.closest('.visual-inner');
+    const clickedImg = visualInner.querySelector('img');
+    
+    if (modal && modalImg && clickedImg) {
+        modalImg.src = clickedImg.src;
+        
+        // Ensure the modal is visible
+        modal.style.display = 'flex';
+        modal.classList.add('open');
+        
+        // Optional: Hide the main body scrollbar while looking at the image
+        document.body.style.overflow = 'hidden';
+    }
+};
 
+window.closeVisualModal = () => {
+    const modal = document.getElementById('visual-modal');
+    if (modal) {
+        modal.style.display = 'none';
+        modal.classList.remove('open');
+        
+        // Restore scrolling
+        document.body.style.overflow = 'auto';
+    }
+};
+
+
+// --- PDF TAB SWITCHING LOGIC ---
+window.switchPdf = function(event, docId) {
+    console.log("Switching to PDF:", docId);
+
+    // 1. Hide all tab content containers
+    const contents = document.querySelectorAll('.pdf-tab-content');
+    contents.forEach(content => content.classList.remove('active'));
+
+    // 2. Remove 'active' status from all tab buttons
+    const buttons = document.querySelectorAll('.pdf-tab-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+
+    // 3. Show the specific content requested
+    const target = document.getElementById(docId);
+    if (target) {
+        target.classList.add('active');
+    } else {
+        console.error("Could not find PDF content with ID:", docId);
+    }
+
+    // 4. Mark the clicked button as the active one
+    if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+    }
+};
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -66,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLines();
         updateReflectionLines();
         updateArchiveConnection();
+        updateActiveNavDot();
     }, 100);
 
 });

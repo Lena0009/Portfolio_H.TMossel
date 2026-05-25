@@ -1,0 +1,285 @@
+/* --- THE ORGANIZED MOSAIC --- */
+.project-mosaic-organized {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); 
+    gap: 16px; /* Space between tiles */
+    width: 100%;
+    margin-top: 24px;
+}
+
+.visual-tile {
+    grid-column: span 7; 
+    position: relative;
+    width: 100%;
+    height: 320px; /* Fixed height ensures rows align perfectly */
+    border-radius: 22px;
+    background: #fcfcfc;
+    border: 1px solid #eeeeee;
+    overflow: hidden;
+}
+
+/* 3. The "Thin" Tile (Takes 5 columns) */
+.visual-tile.thin {
+    grid-column: span 5;
+}
+
+/* 4. Image Handling */
+.visual-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.visual-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image fills the asymmetrical box */
+    display: block;
+}
+
+/* 5. UI Elements (Pill & Button) */
+.visual-pill {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    background: white;
+    
+    /* INCREASED PADDING: 12px top/bottom, 22px left/right */
+    padding: 12px 22px; 
+    
+    border-radius: 24px; /* Slightly increased to keep it pill-shaped with more padding */
+    font-size: 13px;
+    font-weight: 700;
+    
+    /* ADD THIS: Ensures multi-line text has enough space between lines */
+    line-height: 1.4; 
+    
+    /* Ensure the pill doesn't get too wide on small screens */
+    max-width: 80%; 
+    
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    z-index: 10;
+}
+
+.visual-max-btn {
+    position: absolute;
+    bottom: 18px;
+    right: 18px;
+    background: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    z-index: 10;
+    transition: transform 0.2s ease;
+}
+
+.visual-max-btn:hover {
+    transform: scale(1.1);
+}
+.visual-max-btn img { width: 18px; height: 18px; }
+
+/* --- THE IMMERSIVE MAXIMIZED MODAL --- */
+.visual-modal {
+    position: fixed; /* Relative to #project-sidebar */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(15px);
+    z-index: 2000; /* Higher than your project text */
+    
+    display: none; /* Controlled by JS */
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px; 
+    box-sizing: border-box;
+}
+
+.visual-modal.open {
+    display: flex;
+}
+
+.modal-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.modal-card {
+    position: relative;
+    max-width: 100%; 
+    max-height: 100%;
+    border-radius: 12px;
+    background: transparent; /* Changed to transparent for a cleaner look */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+}
+
+.modal-card img {
+    /* The image will now scale down to fit the padded area */
+   max-width: 100%;
+    max-height: 90vh; /* Keeps space for margins */
+    width: auto;
+    height: auto;
+    
+    /* THE FIX: Changed from cover to contain */
+    object-fit: contain; 
+    
+    border-radius: 12px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    display: block;
+}
+
+.modal-caption {
+    display: none !important; /* Forces it to stay hidden */
+    position: absolute;
+    top: -50px; /* Sits above the image */
+    left: 0;    /* Aligns with the left edge of the image */
+    background: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.modal-close:hover { opacity: 1; }
+
+
+.video-row-full {
+    width: 100%;
+    margin: 32px 0; /* Creates breathing space above and below the video */
+    position: relative;
+}
+
+.video-row-full .visual-inner {
+    position: relative;
+    width: 100%;
+    height: 0;
+    /* This creates a perfect 16:9 box based on the width */
+    padding-top: 56.25%; 
+    border-radius: 22px;
+    overflow: hidden;
+    background: #000; /* Black background looks better for videos */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.video-row-full iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+
+/*PDF STYLE*/
+
+.pdf-viewer-container {
+    margin: 40px 0;
+    width: 100%;
+}
+
+.pdf-title {
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.pdf-download-btn {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 10px 20px;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.pdf-download-btn:hover {
+    opacity: 0.8;
+}
+
+
+.pdf-tab-header {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.pdf-tab-btn {
+    padding: 10px 20px;
+    border: none;
+    background: #f5f5f5;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.pdf-tab-btn.active {
+    background: #000;
+    color: #fff;
+}
+
+.pdf-tab-btn:hover:not(.active) {
+    background: #e0e0e0;
+}
+
+/* Hide content by default */
+.pdf-tab-content {
+    display: none;
+}
+
+/* Show active content */
+.pdf-tab-content.active {
+    display: block;
+}
+
+/* Delete both old .pdf-frame-wrapper blocks and use this one instead */
+.pdf-frame-wrapper {
+    width: 100%;
+    height: 900px; /* One clear, tall height */
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid #eeeeee;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    background: #fcfcfc;
+    position: relative; /* Good practice for iframes */
+}
+
+/* Add this to make sure the iframe actually fills the wrapper */
+.pdf-frame-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}

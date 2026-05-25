@@ -3,58 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://www.youtube.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; script-src 'self' 'unsafe-inline' https://www.youtube.com;">
     <title>Seavilization</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/projects.css">
 </head>
 <body id="portfolio-project-template">
 
-    <div class="project-page-container js-project-root" data-category="past">
+    <div class="project-page-container js-project-root" data-category="past tue">
+
+        <img src="Project_Images\Seavilization\Thumbnail.jpg" class="js-project-thumbnail" style="display: none;">
+        <p class="js-project-card-description" style="display: none;">
+        Seavilization reframes the challenges of rising sea levels by imagining a speculative future in which humans coexist with water. Using augmented reality and gamification, the project invites visitors to shape their own “Seavilization,” lowering the tension around climate transition while sparking curiosity about alternative futures.        </p>
         
         <div class="project-media-source hero-media">
-            <img src="Images/place_holder.png" alt="LIVID Hero" class="js-project-thumbnail">
-            <span class="placeholder-x"></span>
+            <img src="Project_Images\Seavilization\seavilization_header.jpg" alt="Project Header">
         </div>
 
-        <div class="project-intro-grid">
+        <div class="project-content-area">
             <div class="intro-text">
-                <h1 class="piv-title js-project-title">Seavilization</h1>
+                <h1 class="piv-title js-project-title">Seavilization</Template></h1>
                 
                 <div class="tag-row js-project-tags">
-                    <span class="tag" data-competence="US">U&S</span>
+                    <span class="tag" data-competence="CA">C&A</span>
                     <span class="tag" data-competence="TR">T&R</span>
-                    
-                    <span class="tag" data-competence="BE">B&E</span>
+                    <span class="tag" data-competence="MDC">M,D&C</span>
                 </div>
 
-                <p class="description js-project-subtitle">
-                    LIVID is a Human Digital Twin (HDT) application designed to help users optimize their well-being...
+                <p class="description">
+                    Seavilization reframes the challenges of rising sea levels by imagining a speculative future in which humans coexist with water. Using augmented reality and gamification, the project invites visitors to shape their own “Seavilization,” lowering the tension around climate transition while sparking curiosity about alternative futures.
+                </p>
+                <p class="description">
+                    The installation features an interactive sandbox equipped with a Kinect 2 and Arduino Uno, which detect height variations to generate real-time projected environments. Depending on the landscapes visitors create, different elements emerge, such as fish farms, floating cities, and hybrid urban ecosystems. Three buttons placed on the side also allow visitors to simulate rising sea levels and observe how their creations adapt to a changing climate.
                 </p>
             </div>
 
             <div class="piv-info-box">
                 <h3>Project Information:</h3>
                 <ul>
-                    <li><strong>Institution:</strong> TUe</li>
-                    <li><strong>Course:</strong> Designing with and for Digital Twin</li>
-                    <li><strong>Year:</strong> 2024</li>
-                    <li><strong>Team:</strong> Jesse Strijker, Zhaopeng Zhu, Helena Mossel</li>
+                    <li><strong>Institution:</strong> Design Academy Eindhoven (DAE)</li>
+                    <li><strong>Course:</strong> Final Bachelor Project</li>
+                    <li><strong>Year:</strong> 2022</li>
+                    <li><strong>Featured:</strong> Graduation Show DDW22</li>
                 </ul>
             </div>
         </div>
 
-        <div class="project-media-source video-media">
-            <img src="Images/place_holder.png" alt="Video">
-            <span class="placeholder-x">X</span>
+        <!--When you Upload your website to Blue Host you got to change the "origin=http://127.0.0.1:5500" with "origin=https://yourdomain.com"-->
+        <div class="project-media-source hero-media video-container">
+            <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube-nocookie.com/embed/cAVBnfJNx9s?origin=http://127.0.0.1:5500" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
         </div>
 
-        <div class="reflection-box">
+        <div class="project-content-area">
+        <div class="reflection-box ">
             <h2>What did I learn...</h2>
-            <p>Your reflection text goes here...</p>
+            <p>This project strengthened my project management and organizational skills, while helping me consolidate the design process I developed over four years at DAE. It pushed me to trust my design instincts and hands-on approach in shaping Seavilization.</p>
+            <p>I gained practical experience working with wood and metal, developing my skills in welding and woodworking, while also expanding my programming abilities by building the augmented reality experience with a Kinect 2 and Arduino Uno. Finally, the graduation process sharpened my presentation skills, culminating in presenting the project at the DDW22 Graduation Show.</p>
         </div>
+        </div>
+
+    
+    <div class="project-content-area">
+        <div class="gallery-wrapper">
+            
+            <div class="project-mosaic-organized">
+                
+                <!--Image 1-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Seavilization\Image_1.jpg" alt="Title Photo">
+                        
+                        <div class="visual-pill">Graduation Presentation Setup</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+
+                <!--Image 2-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Seavilization\Image4.jpeg" alt="Title Photo">
+                        
+                        <div class="visual-pill">Development</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+
+                 <!--Image 3-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Seavilization\Image_5.jpeg" alt="Title Photo">
+                        
+                        <div class="visual-pill">Building installation</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                <!--Image 4-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Seavilization\Image_2.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">GS DDW22</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                 <!--Image 5-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Seavilization\Image_3.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">GS DDW22</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                
+
+            </div>
+        </div>
+
+        <div id="visual-modal" class="visual-modal">
+            <div class="modal-overlay" onclick="closeVisualModal()"></div>
+            
+            <button class="modal-close" onclick="closeVisualModal()">✕</button>
+            
+            <div class="modal-card">
+                <img id="modal-image" src="" alt="Maximized Photo">
+                <div class="visual-pill modal-caption">Title Photo</div>
+            </div>
+        </div>
+    </div>
+    
 
     </div>
 
+    <script type="module" src="JavaScript/gallery.js"></script>
+
 </body>
 </html>
+
+
 

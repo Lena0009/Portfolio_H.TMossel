@@ -1,106 +1,257 @@
-/* --- 1. GLOBAL OVERRIDES (ISOLATION) --- */
+
 
 /* This targets the body when it has the specific project ID */
-#portfolio-project-template, 
-#project-body {
+/* --- 1. GLOBAL SETTINGS --- */
+/* Target the container class instead of the body ID */
+.project-page-container {
     background-color: white !important;
-    background-image: none !important;
     color: #1a1a1a !important;
-    margin: 0;
-    padding: 0;
     font-family: 'Inter', sans-serif;
-    overflow-y: auto; /* Allows scrolling on long project pages */
+    line-height: 1.6;
 }
 
-/* Force all text inside the project to be dark */
-#portfolio-project-template h1, 
-#portfolio-project-template h2, 
-#portfolio-project-template p, 
-#portfolio-project-template li {
+/* Force all text inside to be dark */
+.project-page-container h1, 
+.project-page-container h2, 
+.project-page-container p, 
+.project-page-container li {
     color: #1a1a1a !important;
 }
 
 /* --- 2. LAYOUT & GAPS --- */
-
-#portfolio-project-template .project-page-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 100px 40px;
+.project-page-container {
+    background-color: white !important;
+    width: 100% !important; /* Force full width */
+    margin: 0 !important;
+    padding: 0 !important; /* Ensure nothing pushes the image in */
     display: flex;
     flex-direction: column;
-    gap: 80px; /* Consistent large gaps between sections */
+}
+
+.project-content-area {
+    padding: 40px 40px; /* This keeps the text 40px away from the edges */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 /* --- 3. HEADER & TAGS --- */
-
-#portfolio-project-template .project-title {
-    font-size: 48px;
-    margin-bottom: 20px;
-    letter-spacing: -0.02em;
+.project-title {
+    font-size: 32px; /* Smaller for sidebar */
+    margin-bottom: 10px;
+    font-weight: 800;
 }
 
-#portfolio-project-template .tag-row {
+.tag-row {
     display: flex;
-    gap: 15px;
-    margin-bottom: 45px;
+    flex-wrap: wrap; /* Allows tags to wrap in narrow sidebar */
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-#portfolio-project-template .tag-pill {
-    padding: 15px 24px;
-    border-radius: 50px;
-    font-size: 14px;
-    font-weight: 700;
+/* Paragraph Spacing for description paragraphs */
+.description {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+.description:last-child {
+    margin-bottom: 0;
 }
 
-/* --- 4. CONTENT GRID --- */
-
-#portfolio-project-template .project-intro-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 100px; /* Professional breathing room between columns */
-    align-items: start;
-}
-
-#portfolio-project-template .description {
-    font-size: 20px;
-    line-height: 1.8;
-    max-width: 850px;
-    margin: 0;
-}
-
-#portfolio-project-template .project-info-box {
+/* --- 4. INFO BOX (The "Institution/Course" box) --- */
+/* Note: I updated this to match the class in your HTML: .piv-info-box */
+.piv-info-box {
     background: #fcfcfc;
-    padding: 40px;
-    border-radius: 24px;
+    padding: 24px;
+    border-radius: 16px;
     border: 1px solid #eee;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-#portfolio-project-template .project-info-box li {
-    margin-bottom: 15px;
+.piv-info-box li {
+    margin-top: 10px;
+    margin-bottom: 10px;
     list-style: none;
+    font-size: 15px;
 }
 
-/* --- 5. MEDIA & SPECIAL BOXES --- */
+/* --- 5. MEDIA & REFLECTION --- */
+/* Update your Hero Media container */
+.hero-media {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden; /* FIXED from 'show' */
+    position: relative;
+    
+}
 
-/* The Grey X Boxes */
-#portfolio-project-template .media-placeholder {
+.hero-media img {
+    width: 100% !important;
+    height: 100% !important;
+    display: block; /* Removes tiny gap at bottom of images */
+    object-fit: cover;
+    object-position: center;
+
+
+}
+
+.hero-media.video-container {
+    position: relative;
+    width: 100%;
+    /* This creates a perfect 16:9 box for the video */
+    aspect-ratio: 16 / 9; 
+    background: #000; /* Black background while loading */
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+
+
+.reflection-box {
+    background: #e2e4ff;
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid #c8cdff;
+    
+    margin-top: 40px;
+    margin-bottom: 1px;
+    
+    width: 100%; 
+    box-sizing: border-box; 
+    /* Removed margin-bottom, line-height, and font-size from here 
+       because they belong on the text, not the background box */
+}
+
+.reflection-box h2 {
+    margin-top: 0; 
+    font-size: 28px;
+    margin-bottom: 20px; /* Space between title and first paragraph */
+    color: #1a1a1a;
+}
+
+.reflection-box p {
+    /* THIS IS THE IMPORTANT PART */
+    display: block;       /* Ensures it behaves like a block */
+    margin-top: 0;        /* Reset top margin */
+    margin-bottom: 1.5rem; /* THIS creates the space BETWEEN paragraphs */
+    
+    line-height: 1.6;     
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Optional: This prevents the very last paragraph from adding 
+   extra empty space at the bottom of your purple box */
+.reflection-box p:last-child {
+    margin-bottom: 0;
+}
+
+.project-mosaic-squares {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 squares per row */
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.mosaic-square-item {
+    grid-column: span 1;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.square-preview {
+    position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #eee;
+}
+
+.square-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.expand-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(255,255,255,0.8);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 80px;
     font-weight: bold;
-    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-/* Reflection Box (The Purple Box) */
-#portfolio-project-template .reflection-box {
-    background: #e2e4ff;
-    padding: 60px; /* More padding for internal breathing room */
-    border-radius: 40px;
-    border: 1px solid #c8cdff;
+.mosaic-square-item:hover .expand-icon { opacity: 1; }
+.mosaic-square-item:hover img { transform: scale(1.05); }
+
+/* --- THE UNFOLD LOGIC --- */
+
+.expanded-view {
+    display: none; /* Hidden by default */
+    width: 100%;
+    margin-top: 15px;
+    opacity: 0;
 }
+
+/* When the item has the 'is-expanded' class */
+.mosaic-square-item.is-expanded {
+    grid-column: 1 / -1; /* Forces the item to take the FULL row width */
+}
+
+.mosaic-square-item.is-expanded .expanded-view {
+    display: block;
+    opacity: 1;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.mosaic-square-item.is-expanded .square-preview {
+    display: none; /* Hide the thumbnail when expanded */
+}
+
+.expanded-view img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.image-caption {
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+
+
+
 
 
 /* --- PROJECT PREVIEW CARD (IN SLIDER) --- */
@@ -110,7 +261,7 @@
     overflow: hidden;    /* This clips the tags inside the rounded corners */
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 400px;
     background: white;
     border-radius: 24px;
     padding: 15px;
@@ -185,12 +336,14 @@
     font-weight: 800;
     margin: 0;
     color: #000;
+    margin-bottom: 10px;
 }
 
 .preview-subtitle {
     font-size: 14px;
     color: #666;
-    margin: 0;
+    margin-top: 10px;
+    margin: 10px;
     line-height: 1.4;
     /* Limit to 2 lines of text */
     display: -webkit-box;
@@ -205,7 +358,7 @@
 
 /* Update the main Hub card */
 #project-archive-hub {
-    width: 1500px;
+    width: 1700px;
     overflow: visible;
     display: flex;
     flex-direction: column; /* Stack header on top of slider */
@@ -242,53 +395,23 @@
 
 /* THE WINDOW */
 .archive-slider {
-    width: 100%;
-    overflow: hidden; /* This locks manual scrolling */
-    padding: 40px 0;
-    cursor: default; /* Or 'grab' if you want people to drag the cards */
-    touch-action: pan-x;
+    position: relative;
+    width: 100%;             /* Takes the full width of the parent card */
+    overflow: hidden !important; /* THIS IS THE CRITICAL FIX */
+    padding: 20px 0;
+    display: block;
 }
 
-/* THE BELT */
-#project-track {
+.project-track {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 40px; /* This must match the 'gap' variable in JS */
-    transition: transform 0.6s cubic-bezier(0.2, 0, 0.2, 1); /* Professional slide feel */
-}
-
-/* THE DOTS */
-.archive-dots {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    margin-top: 5px;
-}
-
-.archive-dot {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #333;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.archive-dot.active {
-    background: #333;
-    transform: scale(1.3);
+    gap: 16px;
+    width: max-content !important; /* Allows the track to be as long as needed */
+    transition: transform 0.4s ease-out;
+    padding: 0 40px; 
 }
 
 
-/* --- 3. THE PYRAMID FILTER SYSTEM --- */
-.archive-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px; /* The "Bigger Gap" between the pyramid rows */
-    width: 100%;
-}
 
 .filter-row {
     display: flex;
@@ -364,4 +487,132 @@
     transform: translateY(-5px); /* Lift it up slightly */
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
+}
+
+
+
+
+/* --- TEXT-ONLY PROJECT STYLE --- */
+
+.text-layout-wrapper {
+    /* 80px top padding ensures we are below the navigation arrows */
+    padding: 80px 40px 40px 40px; 
+    display: flex;
+    flex-direction: column;
+    background: white;
+}
+
+.text-layout-title {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    line-height: 1.1;
+    color: #1a1a1a;
+}
+
+.text-layout-tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 40px; /* Space before the info card */
+}
+
+.text-layout-info-card {
+    background: #fcfcfc;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #eeeeee;
+    margin-bottom: 50px; /* Space before reflection */
+}
+
+.text-layout-info-card h3 {
+    margin-top: 0;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.text-layout-info-card ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.text-layout-info-card li {
+    font-size: 15px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+/* --- REFLECTION SECTION --- */
+
+.text-layout-reflection {
+    background: #e2e4ff; /* Your purple reflection background */
+    padding: 45px;
+    border-radius: 24px;
+    border: 1px solid #c8cdff;
+}
+
+.text-layout-reflection h2 {
+    margin-top: 0;
+    font-size: 28px;
+    margin-bottom: 24px;
+}
+
+.text-layout-reflection p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.text-layout-reflection p:last-child {
+    margin-bottom: 0;
+}
+
+
+
+
+/* Hub-Specific Arrow Styling */
+.archive-slider {
+    position: relative; /* Container for the floating arrows */
+    overflow: visible;  /* Let shadows show */
+    width: 100%;
+}
+
+.hub-nav-arrows {
+    position: absolute;
+    top: 50%; /* Center them vertically relative to the track */
+    left: 0;
+    right: 0;
+    transform: translateY(-50%); /* Fine-tune the vertical centering */
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px; /* Space from the hub card edge */
+    pointer-events: none; /* Let clicks pass through to projects */
+    z-index: 100;
+}
+
+.hub-arrow-btn {
+    width: 80px; /* Replicating the circle size from image_30f319.jpg */
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9); /* Slight opacity for elegance */
+    backdrop-filter: blur(5px);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15); /* Stronger shadow on the hub */
+    cursor: pointer;
+    pointer-events: auto; /* Re-enable clicks for the button itself */
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.hub-arrow-btn:hover {
+    transform: translateY(-5px) scale(1.05); /* Fun hover effect */
+    background: #ffffff;
+}
+
+.hub-arrow-btn img {
+    width: 40px;
+    height: 40px;
 }

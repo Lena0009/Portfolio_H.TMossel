@@ -3,58 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colabora</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://www.youtube.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; script-src 'self' 'unsafe-inline' https://www.youtube.com;">
+    <title>Colabora (M1.1)</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/projects.css">
 </head>
 <body id="portfolio-project-template">
 
-    <div class="project-page-container js-project-root" data-category="present tue">
+    <div class="project-page-container js-project-root" data-category="past tue">
+
+        <img src="Project_Images\Colabora\Thumbnail.jpg" class="js-project-thumbnail" style="display: none;">
+        <p class="js-project-card-description" style="display: none;">
+                Colabora is a crowdsourcing app-game designed to improve local pollen forecasting for hay fever sufferers. By motivating non-allergic users to scan and discover trees through playful collection and exploration mechanics, the project creates a local dataset of tree species and locations that contributes to an Urban Digital Twin of local flora. 
+        </p>
         
         <div class="project-media-source hero-media">
-            <img src="Images/place_holder.png" alt="LIVID Hero" class="js-project-thumbnail">
-            <span class="placeholder-x"></span>
+            <img src="Project_Images\Colabora\header.png" alt="Project Header">
         </div>
 
-        <div class="project-intro-grid">
+        <div class="project-content-area">
             <div class="intro-text">
-                <h1 class="piv-title js-project-title">Colabora</h1>
+                <h1 class="piv-title js-project-title">Colabora</Template></h1>
                 
                 <div class="tag-row js-project-tags">
                     <span class="tag" data-competence="US">U&S</span>
+                    <span class="tag" data-competence="CA">C&A</span>
                     <span class="tag" data-competence="TR">T&R</span>
-                    <span class="tag" data-competence="MDC">M,D&C</span>
                     <span class="tag" data-competence="BE">B&E</span>
                 </div>
 
-                <p class="description js-project-subtitle">
-                    LIVID is a Human Digital Twin (HDT) application designed to help users optimize their well-being...
-                </p>
+                <p class="description">
+
+                    Colabora is a crowdsourcing app-game designed to improve local pollen forecasting for hay fever sufferers. By motivating non-allergic users to scan and discover trees through playful collection and exploration mechanics, the project creates a local dataset of tree species and locations that contributes to an Urban Digital Twin of local flora. Combined with bloom data and local weather information, this data can be used to generate more accurate, location-specific pollen forecasts and help users with hay fever, better manage their symptoms.
+
+                    </p>
             </div>
 
             <div class="piv-info-box">
                 <h3>Project Information:</h3>
                 <ul>
-                    <li><strong>Institution:</strong> TUe</li>
-                    <li><strong>Course:</strong> Designing with and for Digital Twin</li>
+                    <li><strong>Institution:</strong> Eindhoven University of Technology (TU/e)</li>
+                    <li><strong>Course:</strong> M1.1 Design Project</li>
                     <li><strong>Year:</strong> 2024</li>
-                    <li><strong>Team:</strong> Jesse Strijker, Zhaopeng Zhu, Helena Mossel</li>
+                    <li><strong>Team:</strong> Kaixuan Chen, Roy Op het Veld, Şevval Bayrak, Helena Mossel </li>
                 </ul>
             </div>
         </div>
 
-        <div class="project-media-source video-media">
-            <img src="Images/place_holder.png" alt="Video">
-            <span class="placeholder-x">X</span>
+        <!--When you Upload your website to Blue Host you got to change the "origin=http://127.0.0.1:5500" with "origin=https://yourdomain.com"-->
+        <div class="project-media-source hero-media video-container">
+            <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube-nocookie.com/embed/nf43qvnZLqM?origin=http://127.0.0.1:5500" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
         </div>
 
-        <div class="reflection-box">
+        <div class="project-content-area">
+        <div class="reflection-box ">
             <h2>What did I learn...</h2>
-            <p>Your reflection text goes here...</p>
+           <p>This project strengthened my skills across business, design, and development. I used stakeholder mapping and value propositions to explore opportunities, and deepened my user involvement through interviews, co-creative sessions, and user testing to support iteration.</p>
+           <p>I focused on embracing process over outcome through ideation and prototyping, learning to balance open exploration with clearer boundaries between exploration and execution. On the technical side, I followed a self-directed C++ course and applied it in Unity to build a basic 2D prototype with a QR scanner, improving my debugging skills.</p>
+           <p>As project lead, I organised planning and sprints using weekly goals and a kanban board, applying a democratic leadership style. This improved my communication and coordination skills, while also highlighting the challenge of balancing inclusivity with fast decision-making.</p>
         </div>
+        </div>
+
+    
+    <div class="project-content-area">
+        <div class="gallery-wrapper">
+            
+            <div class="project-mosaic-organized">
+                
+                <!--Image 1-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Colabora\Concept_Flow.jpg" alt="Title Photo">
+                        
+                        <div class="visual-pill">Concept Flow</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+
+                <!--Image 2-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Colabora\Benchmarking.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Benchmarking</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+
+                 <!--Image 3-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Colabora\Group 42.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Value Proposition</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                <!--Image 4-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Colabora\stakeholder_mapping.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Stakeholder Mapping</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                 <!--Image 5-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Colabora\Compass 1.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">First Iteration</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                <!--Image 6-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Colabora\20240422_145112397_iOS 1.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Second Iteration</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                <!--Image 7-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Colabora\IMG_8932 1.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Final Iteration</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                <!--Image 8-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Colabora\User_test.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">User Test</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                
+
+            </div>
+        </div>
+
+        <div id="visual-modal" class="visual-modal">
+            <div class="modal-overlay" onclick="closeVisualModal()"></div>
+            
+            <button class="modal-close" onclick="closeVisualModal()">✕</button>
+            
+            <div class="modal-card">
+                <img id="modal-image" src="" alt="Maximized Photo">
+                <div class="visual-pill modal-caption">Title Photo</div>
+            </div>
+        </div>
+    </div>
+    
 
     </div>
 
+    <script type="module" src="JavaScript/gallery.js"></script>
+
 </body>
 </html>
+
+
 

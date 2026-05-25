@@ -8,3 +8,11 @@
     transition: all 0.4s ease;
     text-decoration: none;
 }
+
+/* Style for the text itself */
+.project-citation {
+    color: #7d7dff; /* Match your purple theme */
+    font-weight: 700;
+    cursor: help;
+    text-decoration: underline dotted;
+}

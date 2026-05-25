@@ -3,57 +3,251 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://www.youtube.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; script-src 'self' 'unsafe-inline' https://www.youtube.com;">
     <title>Wegwijzer</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/projects.css">
 </head>
 <body id="portfolio-project-template">
 
-    <div class="project-page-container js-project-root" data-category="past">
-        
+    <div class="project-page-container js-project-root" data-category="past tue">
+
+        <img src="Project_Images\Wegwijzer\Thumnail.jpg" class="js-project-thumbnail" style="display: none;">
+        <p class="js-project-card-description" style="display: none;">
+            Wegwijzer is a self-reflection and conversational tool designed to help Havo and VWO students choose their subject profiles at the age of 14–15. Using three card decks focused on personality (Who am I?), interests and preferences (What do I like?), and career vision (What do I find interesting?)  students create a visual map of their responses that supports reflection and discussion with peers and mentors. </p>
+
         <div class="project-media-source hero-media">
-            <img src="Images/place_holder.png" alt="LIVID Hero" class="js-project-thumbnail">
-            <span class="placeholder-x"></span>
+            <img src="Project_Images\Wegwijzer\header.png" alt="Project Header">
         </div>
 
-        <div class="project-intro-grid">
+        <div class="project-content-area">
             <div class="intro-text">
-                <h1 class="piv-title js-project-title">Wegwijzer</h1>
+                <h1 class="piv-title js-project-title">Wegwijzer</Template></h1>
                 
                 <div class="tag-row js-project-tags">
-                    <span class="tag" data-competence="US">U&S</span>
+                    <span class="tag" data-competence="CA">C&A</span>
                     <span class="tag" data-competence="TR">T&R</span>
-                    <span class="tag" data-competence="MDC">M,D&C</span>
+                    <span class="tag" data-competence="US">U&S</span>
                     <span class="tag" data-competence="BE">B&E</span>
                 </div>
 
-                <p class="description js-project-subtitle">
-                    LIVID is a Human Digital Twin (HDT) application designed to help users optimize their well-being...
+                <p class="description">
+                    Wegwijzer is a self-reflection and conversational tool designed to help Havo and VWO students choose their subject profiles at the age of 14–15. Using three card decks focused on personality (Who am I?), interests and preferences (What do I like?), and career vision (What do I find interesting?)  students create a visual map of their responses that supports reflection and discussion with peers and mentors. Beyond guiding profile choices, the project encourages students to better understand themselves and reflect on how their decisions can shape their future.
                 </p>
             </div>
 
             <div class="piv-info-box">
                 <h3>Project Information:</h3>
                 <ul>
-                    <li><strong>Institution:</strong> TUe</li>
-                    <li><strong>Course:</strong> Designing with and for Digital Twin</li>
-                    <li><strong>Year:</strong> 2024</li>
-                    <li><strong>Team:</strong> Jesse Strijker, Zhaopeng Zhu, Helena Mossel</li>
+                    <li><strong>Institution:</strong> Eindhoven University of Technology (TU/e)</li>
+                    <li><strong>Course:</strong> Squad Project Pre-Master (DEP005)</li>
+                    <li><strong>Year:</strong> 2023</li>
+                    <li><strong>Team:</strong> Giovanni Sapienza, Helena Mossel</li>
+                    <li><strong>Experts/Stakeholder:</strong> Roncalli Scholengemeenschap </li>
+                    <li><strong>Exibition:</strong> Presented in Night of the Nerds and University of the Future</li>
+
                 </ul>
             </div>
         </div>
 
-        <div class="project-media-source video-media">
-            <img src="Images/place_holder.png" alt="Video">
-            <span class="placeholder-x">X</span>
+        <div class="project-media-source hero-media">
+            <img src="Project_Images\Wegwijzer\image 27.png" alt="Project Header">
         </div>
 
-        <div class="reflection-box">
+        <div class="project-content-area">
+        <div class="reflection-box ">
             <h2>What did I learn...</h2>
-            <p>Your reflection text goes here...</p>
+            <p>This project was a challenging but valuable learning experience that taught me important lessons in leadership, communication, and teamwork. Taking on a management role exposed me to difficult group dynamics and pushed me to reflect on my own leadership style, helping me become more open-minded and balanced in my expectations.</p>
+            <p>The project also helped me expand my skills across different areas. I gained experience with stakeholder mapping, interviews, user testing, and strategic tools such as value propositions and SWOT analysis. On the technical side, I worked with Jupyter for data acquisition and visualization, while also using my graphic design background to create an engaging and visually appealing tool. Overall, the project challenged me in unexpected ways and became an important learning experience in my growth as a designer.</p>
         </div>
+        </div>
+
+    
+    <div class="project-content-area">
+        <div class="gallery-wrapper">
+            
+            <div class="project-mosaic-organized">
+                
+                <!--Image 1-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Wegwijzer\image 25.jpg" alt="Title Photo">
+                        
+                        <div class="visual-pill">Wegwijzer Flow</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+
+                <!--Image 2-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Wegwijzer\image 23.jpg" alt="Title Photo">
+                        
+                        <div class="visual-pill">Wegwijzer Reflection Steps</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+
+                 <!--Image 3-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Wegwijzer\20231219_232702442_iOS 1.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">First Iteration</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                <!--Image 4-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Wegwijzer\20231122_164029085_iOS 1.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Second Iteration</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                 <!--Image 5-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Wegwijzer\20231127_222401223_iOS 1.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Third Iteration</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                <!--Image 6-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Wegwijzer\20231206_194319112_iOS 1.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Fourth Iteration</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                <!--Image 7-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Wegwijzer\20231212_101246504_iOS 1.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Night of the Nerds</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                <!--Image 8-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Wegwijzer\image 22.jpg" alt="Title Photo">
+                        
+                        <div class="visual-pill">User Test</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                <!--Image 9-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Wegwijzer\231120-2 GS Stake Holder Mappin 1.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Stakeholder Mapping</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                <!--Image 10-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Wegwijzer\231212 GS Values Map 1.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Projects Values</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                <!--Image 11-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Wegwijzer\Benahcmarking 1.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Benchmarking</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+
+                <!--Image 12-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Project_Images\Wegwijzer\SWOT 2.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">SWOT Analysis</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div id="visual-modal" class="visual-modal">
+            <div class="modal-overlay" onclick="closeVisualModal()"></div>
+            
+            <button class="modal-close" onclick="closeVisualModal()">✕</button>
+            
+            <div class="modal-card">
+                <img id="modal-image" src="" alt="Maximized Photo">
+                <div class="visual-pill modal-caption">Title Photo</div>
+            </div>
+        </div>
+    </div>
+    
 
     </div>
+
+    <script type="module" src="JavaScript/gallery.js"></script>
 
 </body>
 </html>

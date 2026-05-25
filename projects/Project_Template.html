@@ -10,13 +10,17 @@
 <body id="portfolio-project-template">
 
     <div class="project-page-container js-project-root" data-category="present tue">
+
+        <img src="Images/place_holder.png" class="js-project-thumbnail" style="display: none;">
+        <p class="js-project-card-description" style="display: none;">
+                A personalized health dashboard for tracking circadian rhythms.
+        </p>
         
         <div class="project-media-source hero-media">
-            <img src="Images/place_holder.png" alt="LIVID Hero" class="js-project-thumbnail">
-            <span class="placeholder-x"></span>
+            <img src="Images/header.png" alt="Project Header">
         </div>
 
-        <div class="project-intro-grid">
+        <div class="project-content-area">
             <div class="intro-text">
                 <h1 class="piv-title js-project-title">Project Tamplate</Template></h1>
                 
@@ -27,7 +31,7 @@
                     <span class="tag" data-competence="BE">B&E</span>
                 </div>
 
-                <p class="description js-project-subtitle">
+                <p class="description">
                     LIVID is a Human Digital Twin (HDT) application designed to help users optimize their well-being...
                 </p>
             </div>
@@ -43,17 +47,96 @@
             </div>
         </div>
 
-        <div class="project-media-source video-media">
-            <img src="Images/place_holder.png" alt="Video">
-            <span class="placeholder-x">X</span>
+        <div class="project-media-source hero-media">
+            <img src="Images/header.png" alt="Video">
+            
         </div>
 
-        <div class="reflection-box">
+        <div class="project-content-area">
+        <div class="reflection-box ">
             <h2>What did I learn...</h2>
             <p>Your reflection text goes here...</p>
         </div>
+        </div>
+
+    
+    <div class="project-content-area">
+        <div class="gallery-wrapper">
+            
+            <div class="project-mosaic-organized">
+                
+                <!--Image 1-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Images/place_holder.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Title Photo</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+
+                <!--Image 2-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Images/place_holder.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Title Photo</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                <!--Image 3-->
+                <div class="visual-tile thin">
+                    <div class="visual-inner">
+                        <img src="Images/place_holder.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Title Photo</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+                 <!--Image 4-->
+                <div class="visual-tile">
+                    <div class="visual-inner">
+                        <img src="Images/place_holder.png" alt="Title Photo">
+                        
+                        <div class="visual-pill">Title Photo</div>
+                        
+                        <button class="visual-max-btn" onclick="openVisualModal(this)">
+                            <img src="Images/maximize-arrows.svg" alt="Maximize">
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="visual-modal" class="visual-modal">
+            <div class="modal-overlay" onclick="closeVisualModal()"></div>
+            
+            <button class="modal-close" onclick="closeVisualModal()">✕</button>
+            
+            <div class="modal-card">
+                <img id="modal-image" src="" alt="Maximized Photo">
+                <div class="visual-pill modal-caption">Title Photo</div>
+            </div>
+        </div>
+    </div>
+    
 
     </div>
+
+    <script type="module" src="JavaScript/gallery.js"></script>
 
 </body>
 </html>
